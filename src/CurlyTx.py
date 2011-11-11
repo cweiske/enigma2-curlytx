@@ -3,12 +3,12 @@ from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.ActionMap import NumberActionMap
-import urllib
+from twisted.web import client
 
 class CurlyTx(Screen):
     skin = """
-        <screen position="100,100" size="550,400" title="Test" >
-	    <widget name="text" position="0,0" size="550,400" font="Regular;20" />
+        <screen position="100,100" size="550,400" title="CurlyTx" >
+	    <widget name="text" position="0,0" size="550,400" font="Console;20" />
         </screen>"""
 
     def __init__(self, session, args = None):
@@ -16,7 +16,6 @@ class CurlyTx(Screen):
         Screen.__init__(self, session)
 
         self["text"] = ScrollLabel("foo")
-        #self.session.openWithCallback(self.mycallback, MessageBox, _("Test-Messagebox?"))
 
         self["actions"] = NumberActionMap(["WizardActions", "InputActions"], {
                 "ok": self.close,
@@ -24,7 +23,8 @@ class CurlyTx(Screen):
                 "up": self.pageUp,
                 "down":	self.pageDown
             }, -1)
-        self.loadUrl()
+
+        self.loadUrl("http://monitoring.home.cweiske.de/wetter/plain.txt")
 
     def pageUp(self):
         self["text"].pageUp()
@@ -39,12 +39,16 @@ class CurlyTx(Screen):
             raise Exception("test-crash")
         self.close()
 
-    def loadUrl(self):
-        #sample = file(test).read()
-        #import urllib
-        ##req = urllib2.Request(url)
-        r = urllib.urlopen("http://www.bogo/tagebuch/tagebuch.css")
-        self["text"].setText(r.read())
-        r.close()
-        # f.write(r.read())
-        # webFile.close()
+    def loadUrl(self, url):
+        self["text"].setText("Loading ...\n" + url);
+
+        client.getPage(url).addCallback(self.urlLoaded).addErrback(self.urlFailed, url)
+
+    def urlLoaded(self, html):
+        self["text"].setText(html)
+
+    def urlFailed(self, error, url):
+        self["text"].setText(
+            "Error fetching URL:\n " + error.getErrorMessage()
+            + "\n\nURL: " + url
+            )
