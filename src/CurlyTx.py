@@ -5,6 +5,9 @@ from Components.ScrollLabel import ScrollLabel
 from Components.ActionMap import NumberActionMap
 from twisted.web import client
 
+from . import config
+from Components.config import config
+
 class CurlyTx(Screen):
     skin = """
         <screen position="100,100" size="550,400" title="CurlyTx" >
