@@ -32,7 +32,7 @@ class CurlyTx(Screen):
 
         self["text"] = ScrollLabel("foo")
 
-        self["key_red"]    = StaticText(_("Close"))
+        self["key_red"]    = StaticText(_("Settings"))
         self["key_green"]  = StaticText(_("Reload"))
         self["key_yellow"] = StaticText(_("Prev"))
         self["key_blue"]   = StaticText(_("Next"))
@@ -44,7 +44,7 @@ class CurlyTx(Screen):
                 "up": self.pageUp,
                 "down":	self.pageDown,
 
-                "red": self.close,
+                "red": self.showSettings,
                 "green": self.reload
             }, -1)
 
@@ -80,3 +80,11 @@ class CurlyTx(Screen):
             "Error fetching URL:\n " + error.getErrorMessage()
             + "\n\nURL: " + url
             )
+
+    def showSettings(self):
+        #self.session.openWithCallback(self.setConf ,Pic_Setup)
+        from CurlyTxSettings import CurlyTxSettings
+        self.session.openWithCallback(self.onSettingsChanged, CurlyTxSettings)
+
+    def onSettingsChanged(self):
+        "fixme"
