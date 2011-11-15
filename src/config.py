@@ -4,10 +4,9 @@ from Components.config import config, ConfigYesNo, ConfigSelection, ConfigNumber
 config.plugins.CurlyTx = ConfigSubsection()
 config.plugins.CurlyTx.menuMain = ConfigYesNo(default = True)
 config.plugins.CurlyTx.menuTitle = ConfigText(default = "CurlyTx")
-config.plugins.CurlyTx.pageCount = ConfigNumber(default=0)
 config.plugins.CurlyTx.pages = ConfigSubList()
 i = 0
-while i < config.plugins.CurlyTx.pageCount.value:
+while i < len(config.plugins.CurlyTx.pages):
     s = ConfigSubsection()
     s.uri = ConfigText(default="http://", fixed_size=False)
     config.plugins.CurlyTx.pages.append(s)
