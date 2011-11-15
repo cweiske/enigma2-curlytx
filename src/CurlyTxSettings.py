@@ -80,11 +80,17 @@ class CurlyTxSettings(ConfigListScreen, Screen):
         self.session.openWithCallback(self.newPageCreated, CurlyTxPageEdit, createPage(), True)
 
     def newPageCreated(self, page, new):
+        if not page:
+            return
+
         if new:
+            num = len(config.plugins.CurlyTx.pages)
             config.plugins.CurlyTx.pages.append(page)
 
+        config.plugins.CurlyTx.pages[num].save()
+        config.plugins.CurlyTx.pages.save()
+
         self["config"].setList(self.getConfigList())
-        pass
 
 
 
@@ -115,4 +121,4 @@ class CurlyTxPageEdit(Screen, ConfigListScreen):
         #FIXME: pass page to parent
 
     def keyCancel(self):
-        self.close()
+        self.close(None, self.new)
