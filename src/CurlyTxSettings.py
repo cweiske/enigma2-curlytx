@@ -3,6 +3,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
 
 from . import config
+from config import createPage
 from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigList, ConfigListScreen
 
@@ -71,19 +72,47 @@ class CurlyTxSettings(ConfigListScreen, Screen):
 
         id = self["config"].getCurrentIndex()
         del config.plugins.CurlyTx.pages[id]
-        config.plugins.CurlyTx.pageCount.value -= 1
 
         self["config"].setList(self.getConfigList())
 
     def newPage(self):
-        # FIXME
+        from CurlyTxSettings import CurlyTxSettings
+        self.session.openWithCallback(self.newPageCreated, CurlyTxPageEdit, createPage(), True)
+
+    def newPageCreated(self, page, new):
+        if new:
+            config.plugins.CurlyTx.pages.append(page)
+
+        self["config"].setList(self.getConfigList())
         pass
 
 
 
 class CurlyTxPageEdit(Screen, ConfigListScreen):
-    def __init__(self, session):
+    def __init__(self, session, page, new = False):
         Screen.__init__(self, session)
+        self.skinName = [ "CurlyTxPageEdit", "Setup" ]
 
         self["key_red"]   = StaticText(_("Cancel"))
         self["key_green"] = StaticText(_("OK"))
+
+        self["setupActions"] = ActionMap(["SetupActions"],
+            {
+                "save": self.save,
+                "cancel": self.keyCancel
+	    }, -1)
+
+        self.page = page
+        self.new = new
+        list = [
+            getConfigListEntry(_("Page URL"), page.uri),
+            getConfigListEntry(_("Title"), page.title),
+            ]
+        ConfigListScreen.__init__(self, list, session = self.session)
+
+    def save(self):
+        self.close(self.page, self.new)
+        #FIXME: pass page to parent
+
+    def keyCancel(self):
+        self.close()
