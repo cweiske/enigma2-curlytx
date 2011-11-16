@@ -24,6 +24,7 @@ class CurlyTx(Screen):
         </screen>"""
 
     currentUrl = None
+    currentPage = None
 
     def __init__(self, session, args = None):
         #self.skin = CurlyTx.skin
@@ -39,16 +40,18 @@ class CurlyTx(Screen):
 
 
         self["actions"] = NumberActionMap(["WizardActions", "ColorActions", "InputActions"], {
-                "ok": self.close,
+                "ok":   self.close,
                 "back": self.close,
-                "up": self.pageUp,
-                "down":	self.pageDown,
+                "up":   self.pageUp,
+                "down": self.pageDown,
 
-                "red": self.showSettings,
-                "green": self.reload
+                "red":    self.showSettings,
+                "green":  self.reload,
+                "yellow": self.prevPage,
+                "blue":   self.nextPage
             }, -1)
 
-        self.loadUrl("http://monitoring.home.cweiske.de/wetter/plain.txt")
+        self.loadUrl(config.plugins.CurlyTx.defaultPage.value)
 
     def pageUp(self):
         self["text"].pageUp()
@@ -56,19 +59,37 @@ class CurlyTx(Screen):
     def pageDown(self):
         self["text"].pageDown()
 
+    def prevPage(self):
+        pageId = self.currentPage - 1
+        if pageId < 0:
+            pageId = len(config.plugins.CurlyTx.pages) - 1
+        self.loadUrl(pageId)
 
-    def mycallback(self, answer):
-        print "answer:", answer
-        if answer:
-            raise Exception("test-crash")
-        self.close()
+    def nextPage(self):
+        pageId = self.currentPage + 1
+        if pageId > len(config.plugins.CurlyTx.pages) - 1:
+            pageId = 0
+        self.loadUrl(pageId)
 
     def reload(self):
-        self.loadUrl(self.currentUrl)
+        self.loadUrl(self.currentPage)
 
-    def loadUrl(self, url):
-        self["text"].setText("Loading ...\n" + url);
+    def loadUrl(self, pageId):
+        pageId = int(pageId)
+        if pageId > (len(config.plugins.CurlyTx.pages) - 1):
+            if len(config.plugins.CurlyTx.pages) == 0:
+                self["text"].setText("Go and add a page in the settings");
+            else:
+                self["text"].setText("Invalid page " + pageId);
+            return
+
+        url   = config.plugins.CurlyTx.pages[pageId].uri.value
+        title = config.plugins.CurlyTx.pages[pageId].title.value
+        self.currentPage = pageId
         self.currentUrl = url
+
+        self.setTitle(title)
+        self["text"].setText("Loading ...\n" + url);
 
         client.getPage(url).addCallback(self.urlLoaded).addErrback(self.urlFailed, url)
 
