@@ -3,7 +3,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
 
 from . import config
-from config import createPage
+from config import createPage, loadDefaultPageOptions
 from Components.config import config, getConfigListEntry, ConfigSelection
 from Components.ConfigList import ConfigList, ConfigListScreen
 
@@ -46,10 +46,7 @@ class CurlyTxSettings(ConfigListScreen, Screen):
 
     def getConfigList(self):
         #reload titles
-        config.plugins.CurlyTx.defaultPage = ConfigSelection(
-            [
-                (x, x.title.value) for x in config.plugins.CurlyTx.pages]
-            )
+        loadDefaultPageOptions()
 
         list = [
             getConfigListEntry(_("Page:") + " " + x.title.value, x.uri)
@@ -143,7 +140,6 @@ class CurlyTxPageEdit(Screen, ConfigListScreen):
 
     def save(self):
         self.close(self.page, self.new)
-        #FIXME: pass page to parent
 
     def keyCancel(self):
         self.close(None, self.new)
