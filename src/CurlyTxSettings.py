@@ -46,7 +46,7 @@ class CurlyTxSettings(ConfigListScreen, Screen):
 
     def getConfigList(self):
         list = [
-            getConfigListEntry(_("Page"), x.uri)
+            getConfigListEntry(_("Page:") + " " + x.title.value, x.uri)
                 for x in config.plugins.CurlyTx.pages
             ]
         list.append(getConfigListEntry(_("Show in main menu"), config.plugins.CurlyTx.menuMain))
