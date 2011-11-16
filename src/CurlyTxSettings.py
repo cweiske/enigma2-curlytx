@@ -42,6 +42,7 @@ class CurlyTxSettings(ConfigListScreen, Screen):
         self["key_blue"]   = StaticText(_("Delete"))
 
         ConfigListScreen.__init__(self, self.getConfigList(), session = self.session)
+        self.onClose.append(self.abort)
 
     def getConfigList(self):
         list = [
@@ -73,6 +74,8 @@ class CurlyTxSettings(ConfigListScreen, Screen):
         id = self["config"].getCurrentIndex()
         del config.plugins.CurlyTx.pages[id]
 
+        config.plugins.CurlyTx.pages.save()
+
         self["config"].setList(self.getConfigList())
 
     def newPage(self):
@@ -86,11 +89,19 @@ class CurlyTxSettings(ConfigListScreen, Screen):
         if new:
             num = len(config.plugins.CurlyTx.pages)
             config.plugins.CurlyTx.pages.append(page)
+            #FIXME: save
 
         config.plugins.CurlyTx.pages[num].save()
-        config.plugins.CurlyTx.pages.save()
 
         self["config"].setList(self.getConfigList())
+
+
+    def keySave(self):
+        config.plugins.CurlyTx.pages.save()
+        ConfigListScreen.keySave(self)
+
+    def abort(self):
+        pass
 
 
 
