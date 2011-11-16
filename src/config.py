@@ -13,10 +13,10 @@ def createPage():
 config.plugins.CurlyTx = ConfigSubsection()
 config.plugins.CurlyTx.menuMain = ConfigYesNo(default = True)
 config.plugins.CurlyTx.menuTitle = ConfigText(default = "CurlyTx")
-config.plugins.CurlyTx.pageCount = ConfigNumber(default = 0)
 config.plugins.CurlyTx.pages = ConfigSubList()
 
 for id,value in config.plugins.CurlyTx.pages.stored_values.iteritems():
     config.plugins.CurlyTx.pages.append(createPage())
 
-#config.plugins.CurlyTx.defaultPage = ConfigNumber(default=0)
+config.plugins.CurlyTx.defaultPage = ConfigSelection(
+    [(x, x.title.value) for x in config.plugins.CurlyTx.pages])

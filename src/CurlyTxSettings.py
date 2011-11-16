@@ -4,7 +4,7 @@ from Components.Sources.StaticText import StaticText
 
 from . import config
 from config import createPage
-from Components.config import config, getConfigListEntry
+from Components.config import config, getConfigListEntry, ConfigSelection
 from Components.ConfigList import ConfigList, ConfigListScreen
 
 class CurlyTxSettings(ConfigListScreen, Screen):
@@ -45,10 +45,17 @@ class CurlyTxSettings(ConfigListScreen, Screen):
         self.onClose.append(self.abort)
 
     def getConfigList(self):
+        #reload titles
+        config.plugins.CurlyTx.defaultPage = ConfigSelection(
+            [
+                (x, x.title.value) for x in config.plugins.CurlyTx.pages]
+            )
+
         list = [
             getConfigListEntry(_("Page:") + " " + x.title.value, x.uri)
                 for x in config.plugins.CurlyTx.pages
             ]
+        list.append(getConfigListEntry(_("Default page"), config.plugins.CurlyTx.defaultPage))
         list.append(getConfigListEntry(_("Show in main menu"), config.plugins.CurlyTx.menuMain))
         list.append(getConfigListEntry(_("Menu title"), config.plugins.CurlyTx.menuTitle))
         return list
@@ -65,7 +72,7 @@ class CurlyTxSettings(ConfigListScreen, Screen):
             self.deletePageConfirm,
             MessageBox,
             _("Really delete this page?\nIt cannot be recovered!")
-        )
+            )
 
     def deletePageConfirm(self, result):
         if not result:
@@ -88,7 +95,7 @@ class CurlyTxSettings(ConfigListScreen, Screen):
             self.session.openWithCallback(
                 self.pageEdited, CurlyTxPageEdit,
                 config.plugins.CurlyTx.pages[id], False
-            )
+                )
 
     def pageEdited(self, page, new):
         if not page:
