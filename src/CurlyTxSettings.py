@@ -31,7 +31,7 @@ class CurlyTxSettings(ConfigListScreen, Screen):
             {
                 "cancel": self.keyCancel,
                 "save": self.keySave,
-                #"ok": self.ok,
+                "ok": self.editPage,
                 "blue": self.deletePage,
                 "yellow": self.newPage
             }, -2)
@@ -80,23 +80,30 @@ class CurlyTxSettings(ConfigListScreen, Screen):
 
     def newPage(self):
         from CurlyTxSettings import CurlyTxSettings
-        self.session.openWithCallback(self.newPageCreated, CurlyTxPageEdit, createPage(), True)
+        self.session.openWithCallback(self.pageEdited, CurlyTxPageEdit, createPage(), True)
 
-    def newPageCreated(self, page, new):
+    def editPage(self):
+        id = self["config"].getCurrentIndex()
+        if id < len(config.plugins.CurlyTx.pages):
+            self.session.openWithCallback(
+                self.pageEdited, CurlyTxPageEdit,
+                config.plugins.CurlyTx.pages[id], False
+            )
+
+    def pageEdited(self, page, new):
         if not page:
             return
 
         if new:
-            num = len(config.plugins.CurlyTx.pages)
             config.plugins.CurlyTx.pages.append(page)
-            #FIXME: save
-
-        config.plugins.CurlyTx.pages[num].save()
 
         self["config"].setList(self.getConfigList())
 
 
     def keySave(self):
+        for i in range(0, len(config.plugins.CurlyTx.pages)):
+            config.plugins.CurlyTx.pages[i].save()
+
         config.plugins.CurlyTx.pages.save()
         ConfigListScreen.keySave(self)
 
