@@ -1,6 +1,7 @@
 <default>
  <prerequisites>
   <tag type="Multimedia" />
+  <tag type="Network" />
  </prerequisites>
  <info>
   <author>Christian Weiske</author>
