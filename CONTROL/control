@@ -4,6 +4,7 @@ Description: Fetch and display remote text files via HTTP
 Maintainer: Christian Weiske <cweiske@cweiske.de>
 Depends: enigma2, python-twisted-web
 License: GPLv3 or later
+Architecture: mipsel
 OE: enigma2-plugins
 Homepage: http://git.cweiske.de/?p=enigma2-curlytx.git
 Source: git://git.cweiske.de/enigma2-curlytx.git
