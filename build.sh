@@ -9,9 +9,14 @@ for i in po/??.mo; do
     lang=`basename "$i" .mo`
     mkdir -p tmp/$extdir/locale/$lang/LC_MESSAGES
     cp "$i" tmp/$extdir/locale/$lang/LC_MESSAGES/CurlyTx.mo
-    cp src/*.py tmp/$extdir/
-    python -O -m compileall src/ -d tmp/$extdir
 done
+
+python -O -m compileall src/ -f
+cp src/*.py tmp/$extdir/
+cp src/*.pyo tmp/$extdir/
 
 ipkg-build tmp/
 rm -r tmp
+
+[ ! -d releases ] && mkdir releases
+mv enigma2-plugin-extensions-curlytx_*_mipsel.ipk releases/
