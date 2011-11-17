@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-17 19:09+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/CurlyTx.py:36 ../src/CurlyTxSettings.py:28
+msgid "Settings"
+msgstr ""
+
+#: ../src/CurlyTx.py:37
+msgid "Reload"
+msgstr ""
+
+#: ../src/CurlyTx.py:38
+msgid "Prev"
+msgstr ""
+
+#: ../src/CurlyTx.py:39
+msgid "Next"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:39 ../src/CurlyTxSettings.py:124
+msgid "Cancel"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:40 ../src/CurlyTxSettings.py:125
+msgid "OK"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:41
+msgid "New"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:42
+msgid "Delete"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:52
+msgid "Page:"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:55
+msgid "Default page"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:56
+msgid "Show in main menu"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:57
+msgid "Menu title"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:71
+msgid ""
+"Really delete this page?\n"
+"It cannot be recovered!"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:136
+msgid "Page URL"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:137
+msgid "Title"
+msgstr ""
