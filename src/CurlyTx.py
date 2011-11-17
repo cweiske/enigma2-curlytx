@@ -60,25 +60,38 @@ class CurlyTx(Screen):
         self["text"].pageDown()
 
     def prevPage(self):
+        if self.currentPage == None:
+            return
+
         pageId = self.currentPage - 1
         if pageId < 0:
             pageId = len(config.plugins.CurlyTx.pages) - 1
         self.loadUrl(pageId)
 
     def nextPage(self):
+        if self.currentPage == None:
+            return
+
         pageId = self.currentPage + 1
         if pageId > len(config.plugins.CurlyTx.pages) - 1:
             pageId = 0
         self.loadUrl(pageId)
 
     def reload(self):
+        if self.currentPage == None:
+            return
+
         self.loadUrl(self.currentPage)
 
     def loadUrl(self, pageId):
+        if pageId == None:
+            self.loadNoPage()
+            return
+
         pageId = int(pageId)
         if pageId > (len(config.plugins.CurlyTx.pages) - 1):
             if len(config.plugins.CurlyTx.pages) == 0:
-                self["text"].setText("Go and add a page in the settings");
+                self.loadNoPage()
             else:
                 self["text"].setText("Invalid page " + pageId);
             return
@@ -102,10 +115,17 @@ class CurlyTx(Screen):
             + "\n\nURL: " + url
             )
 
+    def loadNoPage(self):
+        self["text"].setText("Go and add a page in the settings");
+
     def showSettings(self):
-        #self.session.openWithCallback(self.setConf ,Pic_Setup)
         from CurlyTxSettings import CurlyTxSettings
         self.session.openWithCallback(self.onSettingsChanged, CurlyTxSettings)
 
     def onSettingsChanged(self):
-        "fixme"
+        if len(config.plugins.CurlyTx.pages) == 0:
+            self.currentPage = None
+            self.loadUrl(self.currentPage)
+        elif self.currentPage == None:
+            self.currentPage = 0
+            self.loadUrl(self.currentPage)
