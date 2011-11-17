@@ -11,7 +11,8 @@ Multiple URLs can be configured and navigated.
 Open issues
 ===========
 - makefile
-- German translation
+- hide default page selection when no page defined
+- menu title setting has hard coded length?
 - help screens
 - page import via atom feed/opml
 - move mode to re-order pages
