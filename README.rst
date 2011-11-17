@@ -18,3 +18,7 @@ Open issues
 - show current page when multiple ones are defined: "2/6"
 - configurable text size per page
 - show in plugin/extension menu (blue button)
+
+License
+=======
+The plugin is subject to the GPLv3 or later.
