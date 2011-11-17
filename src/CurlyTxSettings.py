@@ -64,6 +64,9 @@ class CurlyTxSettings(ConfigListScreen, Screen):
         ConfigListScreen.keyRight(self)
 
     def deletePage(self):
+        if len(config.plugins.CurlyTx.pages) == 0:
+            return
+
         from Screens.MessageBox import MessageBox
         self.session.openWithCallback(
             self.deletePageConfirm,
