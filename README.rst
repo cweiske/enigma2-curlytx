@@ -16,8 +16,6 @@ Open issues
 - show current page when multiple ones are defined: "2/6"
 - configurable text size per page
 - how to show clock in lcd?
-- include ``.py`` files?
-- include ``.po`` files?
 
 
 License

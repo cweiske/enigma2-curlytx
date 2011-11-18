@@ -2,4 +2,4 @@
 
 	* Add help screens
 	* Fix fixed size menu title setting
-
+	* Add messages.pot to ipkg distribution
