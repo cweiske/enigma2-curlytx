@@ -10,7 +10,7 @@ for i in po/??.mo; do
     mkdir -p tmp/$extdir/locale/$lang/LC_MESSAGES
     cp "$i" tmp/$extdir/locale/$lang/LC_MESSAGES/CurlyTx.mo
 done
-cp po/messages.pot tmp/$extdir/locale/CurlyTx.mo
+cp po/messages.pot tmp/$extdir/locale/CurlyTx.pot
 
 python -O -m compileall src/ -f
 cp src/*.py tmp/$extdir/
