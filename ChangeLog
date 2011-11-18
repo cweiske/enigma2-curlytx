@@ -4,3 +4,8 @@
 	* Fix fixed size menu title setting
 	* Add messages.pot to ipkg distribution
 	* Translations work now
+	* Version 0.3
+
+2011-11-17  Christian Weiske  <cweiske@cweiske.de>
+
+	* Version 0.2
