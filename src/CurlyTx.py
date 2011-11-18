@@ -60,10 +60,10 @@ class CurlyTx(Screen,HelpableScreen):
     def loadHelp(self):
         self.helpList.append((
                 self["actions"], "WizardActions",
-                [("ok", _("Close window"))]))
+                [("up", _("Scroll page contents up"))]))
         self.helpList.append((
                 self["actions"], "WizardActions",
-                [("back", _("Close window"))]))
+                [("down", _("Scroll page contents down"))]))
         self.helpList.append((
                 self["actions"], "ColorActions",
                 [("red", _("Show program settings"))]))
@@ -76,7 +76,15 @@ class CurlyTx(Screen,HelpableScreen):
         self.helpList.append((
                 self["actions"], "ColorActions",
                 [("blue", _("Switch to previous configured page URL"))]))
-
+        self.helpList.append((
+                self["actions"], "WizardActions",
+                [("ok", _("Close window"))]))
+        self.helpList.append((
+                self["actions"], "WizardActions",
+                [("back", _("Close window"))]))
+        self.helpList.append((
+                self["actions"], "HelpActions",
+                [("displayHelp", _("Show this help screen"))]))
 
     def pageUp(self):
         self["text"].pageUp()
