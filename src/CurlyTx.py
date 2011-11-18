@@ -44,7 +44,7 @@ class CurlyTx(Screen,HelpableScreen):
 
 
         self["actions"] = NumberActionMap(
-            ["WizardActions", "ColorActions", "InputActions", "HelpActions"], {
+            ["WizardActions", "ColorActions", "InputActions"], {
                 "ok":   self.close,
                 "back": self.close,
                 "up":   self.pageUp,
