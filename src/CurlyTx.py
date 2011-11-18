@@ -1,3 +1,5 @@
+from . import _
+
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox

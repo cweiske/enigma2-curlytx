@@ -1,3 +1,5 @@
+from . import _
+
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Components.ActionMap import ActionMap, NumberActionMap
