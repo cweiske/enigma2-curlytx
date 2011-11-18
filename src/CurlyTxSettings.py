@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
 
@@ -7,7 +8,7 @@ from config import createPage, loadDefaultPageOptions
 from Components.config import config, getConfigListEntry, ConfigSelection
 from Components.ConfigList import ConfigList, ConfigListScreen
 
-class CurlyTxSettings(ConfigListScreen, Screen):
+class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
     skin = """
 	<screen name="Setup" position="center,center" size="560,430" title="Setup">
 	  <ePixmap pixmap="skin_default/buttons/red.png"    position="0,0"   size="140,40" transparent="1" alphatest="on" />
@@ -24,6 +25,7 @@ class CurlyTxSettings(ConfigListScreen, Screen):
     def __init__(self, session):
         self.skin = CurlyTxSettings.skin
         Screen.__init__(self, session)
+        HelpableScreen.__init__(self)
         #self.skinName = [ "CurlyTxSettings", "Setup" ]
         self.setup_title = _("Settings")
 
@@ -32,8 +34,8 @@ class CurlyTxSettings(ConfigListScreen, Screen):
                 "cancel": self.keyCancel,
                 "save": self.keySave,
                 "ok": self.editPage,
-                "blue": self.deletePage,
-                "yellow": self.newPage
+                "yellow": self.newPage,
+                "blue": self.deletePage
             }, -2)
 
         self["key_red"]    = StaticText(_("Cancel"))
@@ -42,6 +44,8 @@ class CurlyTxSettings(ConfigListScreen, Screen):
         self["key_blue"]   = StaticText(_("Delete"))
 
         ConfigListScreen.__init__(self, self.getConfigList(), session = self.session)
+
+        self.loadHelp()
         self.onClose.append(self.abort)
 
     def getConfigList(self):
@@ -57,6 +61,23 @@ class CurlyTxSettings(ConfigListScreen, Screen):
         list.append(getConfigListEntry(_("Show in extensions menu"), config.plugins.CurlyTx.menuExtensions))
         list.append(getConfigListEntry(_("Menu title"), config.plugins.CurlyTx.menuTitle))
         return list
+
+    def loadHelp(self):
+        self.helpList.append((
+                self["actions"], "SetupActions",
+                [("cancel", _("Dismiss all setting changes"))]))
+        self.helpList.append((
+                self["actions"], "SetupActions",
+                [("save", _("Save settings and close screen"))]))
+        self.helpList.append((
+                self["actions"], "SetupActions",
+                [("ok", _("Edit selected page"))]))
+        self.helpList.append((
+                self["actions"], "ColorActions",
+                [("yellow", _("Add new page"))]))
+        self.helpList.append((
+                self["actions"], "ColorActions",
+                [("blue", _("Delete selected page"))]))
 
     def keyLeft(self):
         ConfigListScreen.keyLeft(self)
