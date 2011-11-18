@@ -12,7 +12,6 @@ Open issues
 ===========
 - hide default page selection when no page defined
 - menu title setting has hard coded length?
-- help screens
 - page import via atom feed/opml
 - move mode to re-order pages
 - show current page when multiple ones are defined: "2/6"
