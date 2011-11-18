@@ -10,7 +10,6 @@ Multiple URLs can be configured and navigated.
 
 Open issues
 ===========
-- makefile
 - hide default page selection when no page defined
 - menu title setting has hard coded length?
 - help screens
