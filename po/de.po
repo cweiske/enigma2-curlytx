@@ -94,9 +94,8 @@ msgid "Show in main menu"
 msgstr "Im Hauptmenü anzeigen"
 
 #: ../src/CurlyTxSettings.py:61
-#, fuzzy
 msgid "Show in extensions menu"
-msgstr "Im Hauptmenü anzeigen"
+msgstr "Im Extensionmenü anzeigen"
 
 #: ../src/CurlyTxSettings.py:62
 msgid "Menu title"
