@@ -20,13 +20,21 @@ def menuHook(menuid):
 
  
 def Plugins(**kwargs):
-    return [
+    list = [
+#        PluginDescriptor(name = config.plugins.CurlyTx.menuTitle.value,
+#                         description = "View remote text files",
+#                         where = [PluginDescriptor.WHERE_PLUGINMENU],
+#                         fnc = main),
         PluginDescriptor(name = config.plugins.CurlyTx.menuTitle.value,
-                         description = "View remote text files",
-                         where = [PluginDescriptor.WHERE_PLUGINMENU],
-                         fnc = main),
-        PluginDescriptor(name = config.plugins.CurlyTx.menuTitle.value,
-                         description = "View remote text files",
+                         description = _("View remote text files"),
                          where=PluginDescriptor.WHERE_MENU,
                          fnc = menuHook),
-        ]        
+        ]
+    if config.plugins.CurlyTx.menuExtensions.value:
+        list.append(
+            PluginDescriptor(name = config.plugins.CurlyTx.menuTitle.value,
+                             description = _("View remote text files"),
+                             where = [PluginDescriptor.WHERE_EXTENSIONSMENU],
+                             fnc = main)
+        )
+    return list

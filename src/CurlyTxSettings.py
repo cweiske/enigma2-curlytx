@@ -54,6 +54,7 @@ class CurlyTxSettings(ConfigListScreen, Screen):
             ]
         list.append(getConfigListEntry(_("Default page"), config.plugins.CurlyTx.defaultPage))
         list.append(getConfigListEntry(_("Show in main menu"), config.plugins.CurlyTx.menuMain))
+        list.append(getConfigListEntry(_("Show in extensions menu"), config.plugins.CurlyTx.menuExtensions))
         list.append(getConfigListEntry(_("Menu title"), config.plugins.CurlyTx.menuTitle))
         return list
 
