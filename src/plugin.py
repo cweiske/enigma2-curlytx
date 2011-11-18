@@ -15,7 +15,7 @@ def main(session, **kwargs):
 
 def menuHook(menuid):
     if menuid == "mainmenu" and config.plugins.CurlyTx.menuMain.value:
-        return [(config.plugins.CurlyTx.menuTitle.value, main, "curlytx", 1)]
+        return [(config.plugins.CurlyTx.menuTitle.value, main, "curlytx", 41)]
     return [ ]
 
  
