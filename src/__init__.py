@@ -7,7 +7,6 @@ import gettext
 def localeInit():
     lang = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
     os_environ["LANGUAGE"] = lang # Enigma doesn't set this (or LC_ALL, LC_MESSAGES, LANG). gettext needs it!
-    print resolveFilename(SCOPE_PLUGINS, "Extensions/CurlyTx/locale")
     gettext.bindtextdomain("CurlyTx", resolveFilename(SCOPE_PLUGINS, "Extensions/CurlyTx/locale"))
 
 def _(txt):
