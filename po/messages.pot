@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-18 18:25+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/CurlyTx.py:38 ../src/CurlyTxSettings.py:30
+msgid "Settings"
+msgstr ""
+
+#: ../src/CurlyTx.py:39
+msgid "Reload"
+msgstr ""
+
+#: ../src/CurlyTx.py:40
+msgid "Prev"
+msgstr ""
+
+#: ../src/CurlyTx.py:41
+msgid "Next"
+msgstr ""
+
+#: ../src/CurlyTx.py:63
+msgid "Scroll page contents up"
+msgstr ""
+
+#: ../src/CurlyTx.py:66
+msgid "Scroll page contents down"
+msgstr ""
+
+#: ../src/CurlyTx.py:69
+msgid "Show program settings"
+msgstr ""
+
+#: ../src/CurlyTx.py:72
+msgid "Reload current page URL"
+msgstr ""
+
+#: ../src/CurlyTx.py:75
+msgid "Switch to next configured page URL"
+msgstr ""
+
+#: ../src/CurlyTx.py:78
+msgid "Switch to previous configured page URL"
+msgstr ""
+
+#: ../src/CurlyTx.py:81 ../src/CurlyTx.py:84
+msgid "Close window"
+msgstr ""
+
+#: ../src/CurlyTx.py:87
+msgid "Show this help screen"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:41 ../src/CurlyTxSettings.py:149
+msgid "Cancel"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:42 ../src/CurlyTxSettings.py:150
+msgid "OK"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:43
+msgid "New"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:44
+msgid "Delete"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:56
+msgid "Page:"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:59
+msgid "Default page"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:60
+msgid "Show in main menu"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:61
+msgid "Show in extensions menu"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:62
+msgid "Menu title"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:68
+msgid "Dismiss all setting changes"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:71
+msgid "Save settings and close screen"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:74
+msgid "Edit selected page"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:77
+msgid "Add new page"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:80
+msgid "Delete selected page"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:96
+msgid ""
+"Really delete this page?\n"
+"It cannot be recovered!"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:161
+msgid "Page URL"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:162
+msgid "Title"
+msgstr ""
+
+#: ../src/plugin.py:29 ../src/plugin.py:36
+msgid "View remote text files"
+msgstr ""
