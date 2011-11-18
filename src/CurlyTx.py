@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
@@ -9,7 +10,7 @@ from twisted.web import client
 from . import config
 from Components.config import config
 
-class CurlyTx(Screen):
+class CurlyTx(Screen,HelpableScreen):
     skin = """
         <screen name="CurlyTx" position="center,center" size="560,400" title="CurlyTx" >
 	  <ePixmap position="0,0" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
@@ -29,6 +30,7 @@ class CurlyTx(Screen):
     def __init__(self, session, args = None):
         #self.skin = CurlyTx.skin
         Screen.__init__(self, session)
+        HelpableScreen.__init__(self)
         #self.skinName = [ "CurlyTx", "Setup" ]
 
         self["text"] = ScrollLabel("foo")
@@ -39,7 +41,8 @@ class CurlyTx(Screen):
         self["key_blue"]   = StaticText(_("Next"))
 
 
-        self["actions"] = NumberActionMap(["WizardActions", "ColorActions", "InputActions"], {
+        self["actions"] = NumberActionMap(
+            ["WizardActions", "ColorActions", "InputActions", "HelpActions"], {
                 "ok":   self.close,
                 "back": self.close,
                 "up":   self.pageUp,
@@ -51,7 +54,29 @@ class CurlyTx(Screen):
                 "blue":   self.nextPage
             }, -1)
 
+        self.loadHelp()
         self.loadUrl(config.plugins.CurlyTx.defaultPage.value)
+
+    def loadHelp(self):
+        self.helpList.append((
+                self["actions"], "WizardActions",
+                [("ok", _("Close window"))]))
+        self.helpList.append((
+                self["actions"], "WizardActions",
+                [("back", _("Close window"))]))
+        self.helpList.append((
+                self["actions"], "ColorActions",
+                [("red", _("Show program settings"))]))
+        self.helpList.append((
+                self["actions"], "ColorActions",
+                [("green", _("Reload current page URL"))]))
+        self.helpList.append((
+                self["actions"], "ColorActions",
+                [("yellow", _("Switch to next configured page URL"))]))
+        self.helpList.append((
+                self["actions"], "ColorActions",
+                [("blue", _("Switch to previous configured page URL"))]))
+
 
     def pageUp(self):
         self["text"].pageUp()
