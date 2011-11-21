@@ -139,8 +139,9 @@ class CurlyTx(Screen,HelpableScreen):
             self.loadNoPage()
             return
 
+        pageCount = len(config.plugins.CurlyTx.pages)
         pageId = int(pageId)
-        if pageId > (len(config.plugins.CurlyTx.pages) - 1):
+        if pageId > (pageCount - 1):
             if len(config.plugins.CurlyTx.pages) == 0:
                 self.loadNoPage()
             else:
@@ -149,6 +150,10 @@ class CurlyTx(Screen,HelpableScreen):
 
         url   = config.plugins.CurlyTx.pages[pageId].uri.value
         title = config.plugins.CurlyTx.pages[pageId].title.value
+
+        if pageCount > 1:
+            title = "{0} [{1}/{2}]".format(title, pageId + 1, pageCount)
+
         self.currentPage = pageId
         self.currentUrl = url
 
