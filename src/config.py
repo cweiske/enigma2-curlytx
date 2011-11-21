@@ -1,4 +1,4 @@
-from Components.config import config, ConfigYesNo, ConfigSelection, ConfigNumber, ConfigText, ConfigSubsection, ConfigSubList
+from Components.config import config, ConfigYesNo, ConfigSelection, ConfigNumber, ConfigText, ConfigSubsection, ConfigSubList, ConfigInteger
 
 def createPage():
     s = ConfigSubsection()
@@ -7,6 +7,7 @@ def createPage():
         default = "Page #" + str(len(config.plugins.CurlyTx.pages) + 1),
         fixed_size = False
         )
+    s.fontSize = ConfigInteger(20, (1, 100))
     return s
 
 def loadDefaultPageOptions():

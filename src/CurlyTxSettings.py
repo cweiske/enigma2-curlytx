@@ -163,6 +163,7 @@ class CurlyTxPageEdit(Screen, ConfigListScreen):
         list = [
             getConfigListEntry(_("Page URL"), page.uri),
             getConfigListEntry(_("Title"), page.title),
+            getConfigListEntry(_("Font size"), page.fontSize),
             ]
         ConfigListScreen.__init__(self, list, session = self.session)
 

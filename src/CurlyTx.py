@@ -8,6 +8,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from twisted.web import client
+from enigma import gFont
 
 from . import config
 from Components.config import config
@@ -28,6 +29,7 @@ class CurlyTx(Screen,HelpableScreen):
 
     currentUrl = None
     currentPage = None
+    currentFontSize = 20
 
     def __init__(self, session, args = None):
         #self.skin = CurlyTx.skin
@@ -59,6 +61,7 @@ class CurlyTx(Screen,HelpableScreen):
         self.loadHelp()
         self.loadButtons()
         self.loadUrl(config.plugins.CurlyTx.defaultPage.value)
+        self.onLayoutFinish.append(self.setTextFont)
 
     def loadHelp(self):
         self.helpList.append((
@@ -156,11 +159,17 @@ class CurlyTx(Screen,HelpableScreen):
 
         self.currentPage = pageId
         self.currentUrl = url
+        self.currentFontSize = config.plugins.CurlyTx.pages[pageId].fontSize.value
 
         self.setTitle(title)
+        self.setTextFont()
         self["text"].setText("Loading ...\n" + url);
 
         client.getPage(url).addCallback(self.urlLoaded).addErrback(self.urlFailed, url)
+
+    def setTextFont(self):
+        if self["text"].long_text is not None:
+            self["text"].long_text.setFont(gFont("Console", self.currentFontSize))
 
     def urlLoaded(self, html):
         self["text"].setText(html)

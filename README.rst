@@ -12,7 +12,6 @@ Open issues
 ===========
 - page import via atom feed/opml
 - move mode to re-order pages
-- configurable text size per page
 - how to show clock in lcd?
 
 
