@@ -5,7 +5,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from twisted.web import client
 
@@ -43,7 +43,7 @@ class CurlyTx(Screen,HelpableScreen):
         self["key_blue"]   = StaticText(_("Next"))
 
 
-        self["actions"] = NumberActionMap(
+        self["actions"] = ActionMap(
             ["WizardActions", "ColorActions", "InputActions"], {
                 "ok":   self.close,
                 "back": self.close,
