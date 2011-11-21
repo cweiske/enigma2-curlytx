@@ -57,6 +57,7 @@ class CurlyTx(Screen,HelpableScreen):
             }, -1)
 
         self.loadHelp()
+        self.loadButtons()
         self.loadUrl(config.plugins.CurlyTx.defaultPage.value)
 
     def loadHelp(self):
@@ -87,6 +88,21 @@ class CurlyTx(Screen,HelpableScreen):
         self.helpList.append((
                 self["actions"], "HelpActions",
                 [("displayHelp", _("Show this help screen"))]))
+
+    def loadButtons(self):
+        pageCount = len(config.plugins.CurlyTx.pages)
+        if pageCount == 0:
+            self["key_green"].setText("")
+            self["key_yellow"].setText("")
+            self["key_blue"].setText("")
+        elif pageCount == 1:
+            self["key_green"].setText(_("Reload"))
+            self["key_yellow"].setText("")
+            self["key_blue"].setText("")
+        else:
+            self["key_green"].setText(_("Reload"))
+            self["key_yellow"].setText(_("Prev"))
+            self["key_blue"].setText(_("Next"))
 
     def pageUp(self):
         self["text"].pageUp()
@@ -158,6 +174,7 @@ class CurlyTx(Screen,HelpableScreen):
         self.session.openWithCallback(self.onSettingsChanged, CurlyTxSettings)
 
     def onSettingsChanged(self):
+        self.loadButtons()
         if len(config.plugins.CurlyTx.pages) == 0:
             self.currentPage = None
             self.loadUrl(self.currentPage)
