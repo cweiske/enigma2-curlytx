@@ -58,7 +58,8 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
             getConfigListEntry(_("Page:") + " " + x.title.value, x.uri)
                 for x in config.plugins.CurlyTx.pages
             ]
-        list.append(getConfigListEntry(_("Default page"), config.plugins.CurlyTx.defaultPage))
+        if len(config.plugins.CurlyTx.pages):
+            list.append(getConfigListEntry(_("Default page"), config.plugins.CurlyTx.defaultPage))
         list.append(getConfigListEntry(_("Show in main menu"), config.plugins.CurlyTx.menuMain))
         list.append(getConfigListEntry(_("Show in extensions menu"), config.plugins.CurlyTx.menuExtensions))
         list.append(getConfigListEntry(_("Menu title"), config.plugins.CurlyTx.menuTitle))

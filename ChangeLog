@@ -1,7 +1,7 @@
 2011-11-21  Christian Weiske  <cweiske@cweiske.de>
 
 	* hide color buttons when no/only one page configured
-
+	* hide default page config option when no page defined
 
 2011-11-18  Christian Weiske  <cweiske@cweiske.de>
 

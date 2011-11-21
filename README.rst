@@ -10,7 +10,6 @@ Multiple URLs can be configured and navigated.
 
 Open issues
 ===========
-- hide default page selection when no page defined
 - page import via atom feed/opml
 - move mode to re-order pages
 - show current page when multiple ones are defined: "2/6"
