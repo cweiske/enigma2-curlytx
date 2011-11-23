@@ -90,7 +90,8 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
         ConfigListScreen.keyRight(self)
 
     def deletePage(self):
-        if len(config.plugins.CurlyTx.pages) == 0 or self["config"].getCurrentIndex() >= len(config.plugins.CurlyTx.pages):
+        pageCount = len(config.plugins.CurlyTx.pages)
+        if pageCount == 0 or self["config"].getCurrentIndex() >= pageCount:
             return
 
         from Screens.MessageBox import MessageBox
