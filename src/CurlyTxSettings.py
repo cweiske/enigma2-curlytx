@@ -78,6 +78,9 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
                 self["actions"], "SetupActions",
                 [("ok", _("Edit selected page"))]))
         self.helpList.append((
+                self["actions"], "SetupActions",
+                [("ok", _("Load pages from feed"))]))
+        self.helpList.append((
                 self["actions"], "ColorActions",
                 [("yellow", _("Add new page"))]))
         self.helpList.append((
@@ -142,13 +145,17 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
             return
 
         del config.plugins.CurlyTx.pages[:]
-        config.plugins.CurlyTx.pages.save()
-        print("CurlyTx", len(config.plugins.CurlyTx.pages))
+
         for pageData in pages:
             page = createPage()
-            page.title.value = pageData["title"]
-            page.uri.value   = pageData["url"]
             config.plugins.CurlyTx.pages.append(page)
+            page.title.setValue(pageData["title"])
+            page.uri.setValue(pageData["url"])
+
+        #we cannot restore the old pages without enigma2 restart, so
+        # it's better to save here for a consistent user experience
+        config.plugins.CurlyTx.pages.save()
+
         self["config"].setList(self.getConfigList())
 
     def keySave(self):

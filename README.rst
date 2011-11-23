@@ -10,7 +10,6 @@ Multiple URLs can be configured and navigated.
 
 Open issues
 ===========
-- page import via atom feed/opml
 - move mode to re-order pages
 - how to show clock in lcd?
 - show headers when pressing info button

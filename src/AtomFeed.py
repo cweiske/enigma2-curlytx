@@ -6,7 +6,11 @@ class AtomFeed:
     """
     ns = "{http://www.w3.org/2005/Atom}"
     def __init__(self, url, callback):
-        getPage(url).addCallback(self.parse, callback)
+        getPage(url).addCallback(self.parse, callback).addErrback(self.fail)
+
+
+    def fail(self, msg):
+        print("CurlyTx", msg)
 
     def parse(self, data, callback):
         xml = fromstring(data)
