@@ -63,6 +63,7 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
         list.append(getConfigListEntry(_("Show in main menu"), config.plugins.CurlyTx.menuMain))
         list.append(getConfigListEntry(_("Show in extensions menu"), config.plugins.CurlyTx.menuExtensions))
         list.append(getConfigListEntry(_("Menu title"), config.plugins.CurlyTx.menuTitle))
+        list.append(getConfigListEntry(_("Page feed URL"), config.plugins.CurlyTx.feedUrl))
         return list
 
     def loadHelp(self):
@@ -89,7 +90,7 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
         ConfigListScreen.keyRight(self)
 
     def deletePage(self):
-        if len(config.plugins.CurlyTx.pages) == 0:
+        if len(config.plugins.CurlyTx.pages) == 0 or self["config"].getCurrentIndex() >= len(config.plugins.CurlyTx.pages):
             return
 
         from Screens.MessageBox import MessageBox
@@ -121,6 +122,9 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
                 self.pageEdited, CurlyTxPageEdit,
                 config.plugins.CurlyTx.pages[id], False
                 )
+        else:
+            from AtomFeed import AtomFeed
+            AtomFeed(config.plugins.CurlyTx.feedUrl.value, self.feedPagesReceived)
 
     def pageEdited(self, page, new):
         if not page:
@@ -131,6 +135,19 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
 
         self["config"].setList(self.getConfigList())
 
+    def feedPagesReceived(self, pages):
+        if len(pages) == 0:
+            return
+
+        del config.plugins.CurlyTx.pages[:]
+        config.plugins.CurlyTx.pages.save()
+        print("CurlyTx", len(config.plugins.CurlyTx.pages))
+        for pageData in pages:
+            page = createPage()
+            page.title.value = pageData["title"]
+            page.uri.value   = pageData["url"]
+            config.plugins.CurlyTx.pages.append(page)
+        self["config"].setList(self.getConfigList())
 
     def keySave(self):
         for i in range(0, len(config.plugins.CurlyTx.pages)):
