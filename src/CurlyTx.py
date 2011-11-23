@@ -142,24 +142,25 @@ class CurlyTx(Screen,HelpableScreen):
             self.loadNoPage()
             return
 
-        pageCount = len(config.plugins.CurlyTx.pages)
+        cfg = config.plugins.CurlyTx
+        pageCount = len(cfg.pages)
         pageId = int(pageId)
         if pageId > (pageCount - 1):
-            if len(config.plugins.CurlyTx.pages) == 0:
+            if len(cfg.pages) == 0:
                 self.loadNoPage()
             else:
                 self["text"].setText("Invalid page " + pageId);
             return
 
-        url   = config.plugins.CurlyTx.pages[pageId].uri.value
-        title = config.plugins.CurlyTx.pages[pageId].title.value
+        url   = cfg.pages[pageId].uri.value
+        title = cfg.pages[pageId].title.value
 
         if pageCount > 1:
             title = "{0} [{1}/{2}]".format(title, pageId + 1, pageCount)
 
         self.currentPage = pageId
         self.currentUrl = url
-        self.currentFontSize = config.plugins.CurlyTx.pages[pageId].fontSize.value
+        self.currentFontSize = cfg.pages[pageId].fontSize.value
 
         self.setTitle(title)
         self.setTextFont()

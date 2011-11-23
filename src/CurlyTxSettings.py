@@ -53,17 +53,18 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
     def getConfigList(self):
         #reload titles
         loadDefaultPageOptions()
+        cfg = config.plugins.CurlyTx
 
         list = [
             getConfigListEntry(_("Page:") + " " + x.title.value, x.uri)
-                for x in config.plugins.CurlyTx.pages
+                for x in cfg.pages
             ]
-        if len(config.plugins.CurlyTx.pages):
-            list.append(getConfigListEntry(_("Default page"), config.plugins.CurlyTx.defaultPage))
-        list.append(getConfigListEntry(_("Show in main menu"), config.plugins.CurlyTx.menuMain))
-        list.append(getConfigListEntry(_("Show in extensions menu"), config.plugins.CurlyTx.menuExtensions))
-        list.append(getConfigListEntry(_("Menu title"), config.plugins.CurlyTx.menuTitle))
-        list.append(getConfigListEntry(_("Page feed URL"), config.plugins.CurlyTx.feedUrl))
+        if len(cfg.pages):
+            list.append(getConfigListEntry(_("Default page"), cfg.defaultPage))
+        list.append(getConfigListEntry(_("Show in main menu"), cfg.menuMain))
+        list.append(getConfigListEntry(_("Show in extensions menu"), cfg.menuExtensions))
+        list.append(getConfigListEntry(_("Menu title"), cfg.menuTitle))
+        list.append(getConfigListEntry(_("Page feed URL"), cfg.feedUrl))
         return list
 
     def loadHelp(self):
