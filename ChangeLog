@@ -1,13 +1,17 @@
+2011-11-24  Christian Weiske  <cweiske@cweiske.de>
+
+	* Show headers when pressing info button
+
 2011-11-23  Christian Weiske  <cweiske@cweiske.de>
 
 	* Add page list import via Atom feed
 
 2011-11-21  Christian Weiske  <cweiske@cweiske.de>
 
-	* hide color buttons when no/only one page configured
-	* hide default page config option when no page defined
-	* show current page when multiple ones are defined: "2/6"
-	* configurable text font size per page
+	* Hide color buttons when no/only one page configured
+	* Hide default page config option when no page defined
+	* Show current page when multiple ones are defined: "2/6"
+	* Configurable text font size per page
 
 2011-11-18  Christian Weiske  <cweiske@cweiske.de>
 

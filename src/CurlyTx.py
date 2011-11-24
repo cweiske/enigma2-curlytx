@@ -8,6 +8,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from twisted.web import client
+from twisted.web.client import _makeGetterFactory, HTTPClientFactory
 from enigma import gFont
 
 from . import config
@@ -30,6 +31,8 @@ class CurlyTx(Screen,HelpableScreen):
     currentUrl = None
     currentPage = None
     currentFontSize = 20
+    httpGetterFactory = None
+    showingHeaders = False
 
     def __init__(self, session, args = None):
         #self.skin = CurlyTx.skin
@@ -46,7 +49,7 @@ class CurlyTx(Screen,HelpableScreen):
 
 
         self["actions"] = ActionMap(
-            ["WizardActions", "ColorActions", "InputActions"], {
+            ["WizardActions", "ColorActions", "InputActions", "InfobarEPGActions"], {
                 "ok":   self.close,
                 "back": self.close,
                 "up":   self.pageUp,
@@ -55,7 +58,9 @@ class CurlyTx(Screen,HelpableScreen):
                 "red":    self.showSettings,
                 "green":  self.reload,
                 "yellow": self.prevPage,
-                "blue":   self.nextPage
+                "blue":   self.nextPage,
+
+                "showEventInfo": self.showHeader
             }, -1)
 
         self.loadHelp()
@@ -70,6 +75,9 @@ class CurlyTx(Screen,HelpableScreen):
         self.helpList.append((
                 self["actions"], "WizardActions",
                 [("down", _("Scroll page contents down"))]))
+        self.helpList.append((
+                self["actions"], "InfobarEPGActions",
+                [("showEventInfo", _("Show HTTP response headers"))]))
         self.helpList.append((
                 self["actions"], "ColorActions",
                 [("red", _("Show program settings"))]))
@@ -166,7 +174,7 @@ class CurlyTx(Screen,HelpableScreen):
         self.setTextFont()
         self["text"].setText("Loading ...\n" + url);
 
-        client.getPage(url).addCallback(self.urlLoaded).addErrback(self.urlFailed, url)
+        self.getPageWebClient(url).addCallback(self.urlLoaded).addErrback(self.urlFailed, url)
 
     def setTextFont(self):
         if self["text"].long_text is not None:
@@ -184,6 +192,19 @@ class CurlyTx(Screen,HelpableScreen):
     def loadNoPage(self):
         self["text"].setText("Go and add a page in the settings");
 
+    def showHeader(self):
+        if self.showingHeaders:
+            self["text"].setText(self.pageContent)
+            self.pageContent    = None
+            self.showingHeaders = False
+        else:
+            headers = "HTTP response headers for\n" + self.currentUrl + "\n\n"
+            for (k, v) in self.httpGetterFactory.response_headers.items():
+                headers += k + ": " + ("\n" + k + ": ").join(v) + "\n"
+            self.pageContent = self["text"].getText()
+            self["text"].setText(headers)
+            self.showingHeaders = True
+
     def showSettings(self):
         from CurlyTxSettings import CurlyTxSettings
         self.session.openWithCallback(self.onSettingsChanged, CurlyTxSettings)
@@ -196,3 +217,22 @@ class CurlyTx(Screen,HelpableScreen):
         elif self.currentPage == None:
             self.currentPage = 0
             self.loadUrl(self.currentPage)
+
+
+    def getPageWebClient(self, url, contextFactory=None, *args, **kwargs):
+        """
+        Download a web page as a string.
+
+        COPY OF twisted.web.client.getPage to store the factory
+
+        Download a page. Return a deferred, which will callback with a
+        page (as a string) or errback with a description of the error.
+
+        See L{HTTPClientFactory} to see what extra arguments can be passed.
+        """
+        self.httpGetterFactory = _makeGetterFactory(
+            url,
+            HTTPClientFactory,
+            contextFactory=contextFactory,
+            *args, **kwargs)
+        return self.httpGetterFactory.deferred

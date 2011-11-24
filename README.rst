@@ -12,7 +12,6 @@ Open issues
 ===========
 - move mode to re-order pages
 - how to show clock in lcd?
-- show headers when pressing info button
 
 
 License
