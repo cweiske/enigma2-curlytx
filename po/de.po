@@ -43,7 +43,7 @@ msgstr "Seiteninhalt runterscrollen"
 
 #: ../src/CurlyTx.py:80
 msgid "Show HTTP response headers"
-msgstr ""
+msgstr "Zeige HTTP-Antwortheader"
 
 #: ../src/CurlyTx.py:83
 msgid "Show program settings"
@@ -106,9 +106,8 @@ msgid "Menu title"
 msgstr "Menütitel"
 
 #: ../src/CurlyTxSettings.py:67
-#, fuzzy
 msgid "Page feed URL"
-msgstr "Seiten-URL"
+msgstr "Seiten-Feed-URL"
 
 #: ../src/CurlyTxSettings.py:73
 msgid "Dismiss all setting changes"
@@ -124,7 +123,7 @@ msgstr "Ausgewählte Seite bearbeiten"
 
 #: ../src/CurlyTxSettings.py:82
 msgid "Load pages from feed"
-msgstr ""
+msgstr "Seiten aus Feed laden"
 
 #: ../src/CurlyTxSettings.py:85
 msgid "Add new page"
@@ -152,7 +151,7 @@ msgstr "Titel"
 
 #: ../src/CurlyTxSettings.py:192
 msgid "Font size"
-msgstr ""
+msgstr "Schriftgröße"
 
 #: ../src/plugin.py:29 ../src/plugin.py:36
 msgid "View remote text files"
