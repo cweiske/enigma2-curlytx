@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-18 18:25+0100\n"
+"POT-Creation-Date: 2011-11-24 20:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Christian Weiske <cweiske@cweiske.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,111 +17,124 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/CurlyTx.py:38 ../src/CurlyTxSettings.py:30
+#: ../src/CurlyTx.py:45 ../src/CurlyTxSettings.py:32
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../src/CurlyTx.py:39
+#: ../src/CurlyTx.py:46 ../src/CurlyTx.py:110 ../src/CurlyTx.py:114
 msgid "Reload"
 msgstr "Neu laden"
 
-#: ../src/CurlyTx.py:40
+#: ../src/CurlyTx.py:47 ../src/CurlyTx.py:115
 msgid "Prev"
 msgstr "Zurück"
 
-#: ../src/CurlyTx.py:41
+#: ../src/CurlyTx.py:48 ../src/CurlyTx.py:116
 msgid "Next"
 msgstr "Weiter"
 
-#: ../src/CurlyTx.py:63
+#: ../src/CurlyTx.py:74
 msgid "Scroll page contents up"
 msgstr "Seiteninhalt hochscrollen"
 
-#: ../src/CurlyTx.py:66
+#: ../src/CurlyTx.py:77
 msgid "Scroll page contents down"
 msgstr "Seiteninhalt runterscrollen"
 
-#: ../src/CurlyTx.py:69
+#: ../src/CurlyTx.py:80
+msgid "Show HTTP response headers"
+msgstr ""
+
+#: ../src/CurlyTx.py:83
 msgid "Show program settings"
 msgstr "Programmeinstellungen anzeigen"
 
-#: ../src/CurlyTx.py:72
+#: ../src/CurlyTx.py:86
 msgid "Reload current page URL"
 msgstr "Aktuelle Seite neu laden"
 
-#: ../src/CurlyTx.py:75
+#: ../src/CurlyTx.py:89
 msgid "Switch to next configured page URL"
 msgstr "Zur nächsten Seite wechseln"
 
-#: ../src/CurlyTx.py:78
+#: ../src/CurlyTx.py:92
 msgid "Switch to previous configured page URL"
 msgstr "Zur vorherigen Seite wechseln"
 
-#: ../src/CurlyTx.py:81 ../src/CurlyTx.py:84
+#: ../src/CurlyTx.py:95 ../src/CurlyTx.py:98
 msgid "Close window"
 msgstr "Fenster schließen"
 
-#: ../src/CurlyTx.py:87
+#: ../src/CurlyTx.py:101
 msgid "Show this help screen"
 msgstr "Diese Hilfe anzeigen"
 
-#: ../src/CurlyTxSettings.py:41 ../src/CurlyTxSettings.py:149
+#: ../src/CurlyTxSettings.py:43 ../src/CurlyTxSettings.py:178
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../src/CurlyTxSettings.py:42 ../src/CurlyTxSettings.py:150
+#: ../src/CurlyTxSettings.py:44 ../src/CurlyTxSettings.py:179
 msgid "OK"
 msgstr "OK"
 
-#: ../src/CurlyTxSettings.py:43
+#: ../src/CurlyTxSettings.py:45
 msgid "New"
 msgstr "Neu"
 
-#: ../src/CurlyTxSettings.py:44
+#: ../src/CurlyTxSettings.py:46
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../src/CurlyTxSettings.py:56
+#: ../src/CurlyTxSettings.py:59
 msgid "Page:"
 msgstr "Seite: "
 
-#: ../src/CurlyTxSettings.py:59
+#: ../src/CurlyTxSettings.py:63
 msgid "Default page"
 msgstr "Standardseite"
 
-#: ../src/CurlyTxSettings.py:60
+#: ../src/CurlyTxSettings.py:64
 msgid "Show in main menu"
 msgstr "Im Hauptmenü anzeigen"
 
-#: ../src/CurlyTxSettings.py:61
+#: ../src/CurlyTxSettings.py:65
 msgid "Show in extensions menu"
 msgstr "Im Extensionmenü anzeigen"
 
-#: ../src/CurlyTxSettings.py:62
+#: ../src/CurlyTxSettings.py:66
 msgid "Menu title"
 msgstr "Menütitel"
 
-#: ../src/CurlyTxSettings.py:68
+#: ../src/CurlyTxSettings.py:67
+#, fuzzy
+msgid "Page feed URL"
+msgstr "Seiten-URL"
+
+#: ../src/CurlyTxSettings.py:73
 msgid "Dismiss all setting changes"
 msgstr "Alle Änderungen verwerfen"
 
-#: ../src/CurlyTxSettings.py:71
+#: ../src/CurlyTxSettings.py:76
 msgid "Save settings and close screen"
 msgstr "Änderungen speichern und schließen"
 
-#: ../src/CurlyTxSettings.py:74
+#: ../src/CurlyTxSettings.py:79
 msgid "Edit selected page"
 msgstr "Ausgewählte Seite bearbeiten"
 
-#: ../src/CurlyTxSettings.py:77
+#: ../src/CurlyTxSettings.py:82
+msgid "Load pages from feed"
+msgstr ""
+
+#: ../src/CurlyTxSettings.py:85
 msgid "Add new page"
 msgstr "Neue Seite hinzufügen"
 
-#: ../src/CurlyTxSettings.py:80
+#: ../src/CurlyTxSettings.py:88
 msgid "Delete selected page"
 msgstr "Ausgewählte Seite löschen"
 
-#: ../src/CurlyTxSettings.py:96
+#: ../src/CurlyTxSettings.py:105
 msgid ""
 "Really delete this page?\n"
 "It cannot be recovered!"
@@ -129,13 +142,17 @@ msgstr ""
 "Soll diese Seite wirklich gelöscht werden?\n"
 "Dies kann nicht rückgängig gemacht werden."
 
-#: ../src/CurlyTxSettings.py:161
+#: ../src/CurlyTxSettings.py:190
 msgid "Page URL"
 msgstr "Seiten-URL"
 
-#: ../src/CurlyTxSettings.py:162
+#: ../src/CurlyTxSettings.py:191
 msgid "Title"
 msgstr "Titel"
+
+#: ../src/CurlyTxSettings.py:192
+msgid "Font size"
+msgstr ""
 
 #: ../src/plugin.py:29 ../src/plugin.py:36
 msgid "View remote text files"
