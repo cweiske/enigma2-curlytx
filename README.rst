@@ -34,7 +34,13 @@ Replace ``$lang_code`` with your two-letter language code::
 
 Building
 ========
-ipkg-build:
+First upgrade the version number in ``CONTROL/control``.
+
+Then simply run ::
+
+    ./build.sh
+
+You will need the ``ipkg-build`` script from
  http://reichholf.net/files/dreambox/tools/ipkg-build
 
-http://dream.reichholf.net/wiki/Howto:IPK_Pakete_erstellen
+Also see http://dream.reichholf.net/wiki/Howto:IPK_Pakete_erstellen
