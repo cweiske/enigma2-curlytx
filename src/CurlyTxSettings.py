@@ -152,10 +152,6 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
             page.title.setValue(pageData["title"])
             page.uri.setValue(pageData["url"])
 
-        #we cannot restore the old pages without enigma2 restart, so
-        # it's better to save here for a consistent user experience
-        config.plugins.CurlyTx.pages.save()
-
         self["config"].setList(self.getConfigList())
 
     def keySave(self):
@@ -166,7 +162,11 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
         ConfigListScreen.keySave(self)
 
     def abort(self):
-        pass
+        #restore old page configuration
+        cfg = config.plugins.CurlyTx
+        del cfg.pages[:]
+        for i in cfg.pages.stored_values:
+            cfg.pages.append(createPage())
 
 
 
