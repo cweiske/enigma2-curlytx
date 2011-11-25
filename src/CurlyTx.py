@@ -157,7 +157,7 @@ class CurlyTx(Screen,HelpableScreen):
             if len(cfg.pages) == 0:
                 self.loadNoPage()
             else:
-                self["text"].setText("Invalid page " + pageId);
+                self["text"].setText(_("Invalid page") + " " + pageId);
             return
 
         url   = cfg.pages[pageId].uri.value
@@ -172,7 +172,7 @@ class CurlyTx(Screen,HelpableScreen):
 
         self.setTitle(title)
         self.setTextFont()
-        self["text"].setText("Loading ...\n" + url);
+        self["text"].setText(_("Loading ...") + "\n" + url);
 
         self.getPageWebClient(url).addCallback(self.urlLoaded).addErrback(self.urlFailed, url)
 
@@ -185,12 +185,12 @@ class CurlyTx(Screen,HelpableScreen):
 
     def urlFailed(self, error, url):
         self["text"].setText(
-            "Error fetching URL:\n " + error.getErrorMessage()
+            _("Error fetching URL:") + "\n " + error.getErrorMessage()
             + "\n\nURL: " + url
             )
 
     def loadNoPage(self):
-        self["text"].setText("Go and add a page in the settings");
+        self["text"].setText(_("Go and add a page in the settings"));
 
     def showHeader(self):
         if self.showingHeaders:
@@ -198,7 +198,7 @@ class CurlyTx(Screen,HelpableScreen):
             self.pageContent    = None
             self.showingHeaders = False
         else:
-            headers = "HTTP response headers for\n" + self.currentUrl + "\n\n"
+            headers = _("HTTP response headers for") + "\n" + self.currentUrl + "\n\n"
             for (k, v) in self.httpGetterFactory.response_headers.items():
                 headers += k + ": " + ("\n" + k + ": ").join(v) + "\n"
             self.pageContent = self["text"].getText()
