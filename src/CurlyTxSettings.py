@@ -48,7 +48,6 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
         ConfigListScreen.__init__(self, self.getConfigList(), session = self.session)
 
         self.loadHelp()
-        self.onClose.append(self.abort)
 
     def getConfigList(self):
         #reload titles
@@ -161,7 +160,18 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
         config.plugins.CurlyTx.pages.save()
         ConfigListScreen.keySave(self)
 
-    def abort(self):
+    def cancelConfirm(self, result):
+        """Overwriting ConfigListScreen.cancelConfirm to call cancelAll method"""
+        if not result:
+            return
+
+        self.cancelAll()
+        self.close()
+
+    def cancelAll(self):
+        for x in self["config"].list:
+            x[1].cancel()
+
         #restore old page configuration
         cfg = config.plugins.CurlyTx
         del cfg.pages[:]
