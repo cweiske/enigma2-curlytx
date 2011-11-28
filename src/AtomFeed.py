@@ -6,10 +6,13 @@ from twisted.web.client import getPage
 from xml.etree.cElementTree import fromstring
 
 class AtomFeed:
-    """Simple XML parser that extracts pages from a atom feed
-    """
+    """ Simple XML parser that extracts pages from a atom feed """
     ns = "{http://www.w3.org/2005/Atom}"
     def __init__(self, url, callback):
+        """ Fetches the URL
+
+        Parsed pages are sent back to callback by parse()
+        """
         getPage(url).addCallback(self.parse, callback).addErrback(self.fail)
 
 
@@ -17,6 +20,7 @@ class AtomFeed:
         print("CurlyTx", msg)
 
     def parse(self, data, callback):
+        """ Parse atom feed data into pages list and run callback """
         xml = fromstring(data)
         pages = []
         for entry in xml.findall("{0}entry".format(self.ns)):
@@ -28,6 +32,7 @@ class AtomFeed:
         callback(pages)
 
     def bestLink(self, list):
+        """ Fetch the best matching link from an atom feed entry """
         foundLevel = -1
         foundHref = None
         for link in list:
@@ -41,6 +46,11 @@ class AtomFeed:
         return foundHref
 
     def level(self, link):
+        """ Determines the level of a link
+
+        "text/plain" type links are best, links without type are second.
+        All others have the lowest level 1.
+        """
         type = link.get("type")
         if type == "text/plain":
             return 3

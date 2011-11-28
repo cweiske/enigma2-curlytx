@@ -5,6 +5,7 @@
 from Components.config import config, ConfigYesNo, ConfigSelection, ConfigNumber, ConfigText, ConfigSubsection, ConfigSubList, ConfigInteger
 
 def createPage():
+    """ Create and return a configuration page object """
     s = ConfigSubsection()
     s.uri   = ConfigText(default="http://", fixed_size=False)
     s.title = ConfigText(

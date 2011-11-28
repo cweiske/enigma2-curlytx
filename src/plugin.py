@@ -10,6 +10,7 @@ from Components.config import config
 
  
 def main(session, **kwargs):
+    """ Opens the main window """
     try:
         session.open(CurlyTx.CurlyTx)
     except:
@@ -17,12 +18,14 @@ def main(session, **kwargs):
         traceback.print_exc()
 
 def menuHook(menuid):
+    """ Called whenever a menu is created """
     if menuid == "mainmenu" and config.plugins.CurlyTx.menuMain.value:
         return [(config.plugins.CurlyTx.menuTitle.value, main, "curlytx", 41)]
     return [ ]
 
  
 def Plugins(**kwargs):
+    """ Register CurlyTx in the extension list and main menu """
     list = [
 #        PluginDescriptor(name = config.plugins.CurlyTx.menuTitle.value,
 #                         description = "View remote text files",
