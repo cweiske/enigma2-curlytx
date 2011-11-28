@@ -10,7 +10,6 @@ from Components.config import config
 
  
 def main(session, **kwargs):
-    reload(CurlyTx)
     try:
         session.open(CurlyTx.CurlyTx)
     except:
