@@ -1,18 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# German translation for CurlyTx
+# Copyright (C) 2011
+# This file is distributed under the same license as the CurlyTx package.
+# Christian Weiske <cweiske@cweiske.de>, 2011.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-24 20:11+0100\n"
+"POT-Creation-Date: 2011-11-25 14:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Christian Weiske <cweiske@cweiske.de>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,11 +67,31 @@ msgstr "Fenster schließen"
 msgid "Show this help screen"
 msgstr "Diese Hilfe anzeigen"
 
-#: ../src/CurlyTxSettings.py:43 ../src/CurlyTxSettings.py:178
+#: ../src/CurlyTx.py:160
+msgid "Invalid page"
+msgstr "Ungültige Seite"
+
+#: ../src/CurlyTx.py:175
+msgid "Loading ..."
+msgstr "Lade ..."
+
+#: ../src/CurlyTx.py:188
+msgid "Error fetching URL:"
+msgstr "Fehler beim Laden der URL:"
+
+#: ../src/CurlyTx.py:193
+msgid "Go and add a page in the settings"
+msgstr "Füg eine Seite in den Einstellungen hinzu"
+
+#: ../src/CurlyTx.py:201
+msgid "HTTP response headers for"
+msgstr "HTTP-Antwortheader für"
+
+#: ../src/CurlyTxSettings.py:43 ../src/CurlyTxSettings.py:188
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../src/CurlyTxSettings.py:44 ../src/CurlyTxSettings.py:179
+#: ../src/CurlyTxSettings.py:44 ../src/CurlyTxSettings.py:189
 msgid "OK"
 msgstr "OK"
 
@@ -85,55 +103,55 @@ msgstr "Neu"
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../src/CurlyTxSettings.py:59
+#: ../src/CurlyTxSettings.py:58
 msgid "Page:"
 msgstr "Seite: "
 
-#: ../src/CurlyTxSettings.py:63
+#: ../src/CurlyTxSettings.py:62
 msgid "Default page"
 msgstr "Standardseite"
 
-#: ../src/CurlyTxSettings.py:64
+#: ../src/CurlyTxSettings.py:63
 msgid "Show in main menu"
 msgstr "Im Hauptmenü anzeigen"
 
-#: ../src/CurlyTxSettings.py:65
+#: ../src/CurlyTxSettings.py:64
 msgid "Show in extensions menu"
 msgstr "Im Extensionmenü anzeigen"
 
-#: ../src/CurlyTxSettings.py:66
+#: ../src/CurlyTxSettings.py:65
 msgid "Menu title"
 msgstr "Menütitel"
 
-#: ../src/CurlyTxSettings.py:67
+#: ../src/CurlyTxSettings.py:66
 msgid "Page feed URL"
 msgstr "Seiten-Feed-URL"
 
-#: ../src/CurlyTxSettings.py:73
+#: ../src/CurlyTxSettings.py:72
 msgid "Dismiss all setting changes"
 msgstr "Alle Änderungen verwerfen"
 
-#: ../src/CurlyTxSettings.py:76
+#: ../src/CurlyTxSettings.py:75
 msgid "Save settings and close screen"
 msgstr "Änderungen speichern und schließen"
 
-#: ../src/CurlyTxSettings.py:79
+#: ../src/CurlyTxSettings.py:78
 msgid "Edit selected page"
 msgstr "Ausgewählte Seite bearbeiten"
 
-#: ../src/CurlyTxSettings.py:82
+#: ../src/CurlyTxSettings.py:81
 msgid "Load pages from feed"
 msgstr "Seiten aus Feed laden"
 
-#: ../src/CurlyTxSettings.py:85
+#: ../src/CurlyTxSettings.py:84
 msgid "Add new page"
 msgstr "Neue Seite hinzufügen"
 
-#: ../src/CurlyTxSettings.py:88
+#: ../src/CurlyTxSettings.py:87
 msgid "Delete selected page"
 msgstr "Ausgewählte Seite löschen"
 
-#: ../src/CurlyTxSettings.py:105
+#: ../src/CurlyTxSettings.py:104
 msgid ""
 "Really delete this page?\n"
 "It cannot be recovered!"
@@ -141,15 +159,15 @@ msgstr ""
 "Soll diese Seite wirklich gelöscht werden?\n"
 "Dies kann nicht rückgängig gemacht werden."
 
-#: ../src/CurlyTxSettings.py:190
+#: ../src/CurlyTxSettings.py:200
 msgid "Page URL"
 msgstr "Seiten-URL"
 
-#: ../src/CurlyTxSettings.py:191
+#: ../src/CurlyTxSettings.py:201
 msgid "Title"
 msgstr "Titel"
 
-#: ../src/CurlyTxSettings.py:192
+#: ../src/CurlyTxSettings.py:202
 msgid "Font size"
 msgstr "Schriftgröße"
 
