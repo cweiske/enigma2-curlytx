@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+# CurlyTx configuration window
+# Copyright (C) 2011 Christian Weiske <cweiske@cweiske.de>
+
 from . import _
 
 from Screens.Screen import Screen
