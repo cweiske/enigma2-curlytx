@@ -31,6 +31,7 @@ Replace ``$lang_code`` with your two-letter language code::
     ... edit $lang_code.po now
     $ ./compile.sh
 
+
 Editing an existing translation
 -------------------------------
 Simply run ::
@@ -40,6 +41,15 @@ Simply run ::
 
 This will update the translation template ``messages.pot`` from the source code
 and will merge the changes into the single translation files.
+
+
+Testing a translation
+---------------------
+Link your compiled translation file into ::
+
+    src/locale/$lang_code/LC_MESSAGES/CurlyTx.mo
+
+Enigma2 will pick it up automatically.
 
 
 Building
