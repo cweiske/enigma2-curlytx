@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # CurlyTx main window
 # Copyright (C) 2011 Christian Weiske <cweiske@cweiske.de>
+# License: GPLv3 or later
 
 from . import _
 

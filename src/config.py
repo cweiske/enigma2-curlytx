@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # CurlyTx configuration
 # Copyright (C) 2011 Christian Weiske <cweiske@cweiske.de>
+# License: GPLv3 or later
 
 from Components.config import config, ConfigYesNo, ConfigSelection, ConfigNumber, ConfigText, ConfigSubsection, ConfigSubList, ConfigInteger
 

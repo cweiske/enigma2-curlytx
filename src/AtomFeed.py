@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # CurlyTx Atom feed parser
 # Copyright (C) 2011 Christian Weiske <cweiske@cweiske.de>
+# License: GPLv3 or later
 
 from twisted.web.client import getPage
 from xml.etree.cElementTree import fromstring
