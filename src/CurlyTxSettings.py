@@ -17,7 +17,7 @@ from Components.ConfigList import ConfigList, ConfigListScreen
 
 class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
     skin = """
-	<screen name="Setup" position="center,center" size="560,430" title="Setup">
+	<screen name="Setup" position="center,center" size="560,430" title="Settings">
 	  <ePixmap pixmap="skin_default/buttons/red.png"    position="0,0"   size="140,40" transparent="1" alphatest="on" />
 	  <ePixmap pixmap="skin_default/buttons/green.png"  position="140,0" size="140,40" transparent="1" alphatest="on" />
 	  <ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" alphatest="on" />
