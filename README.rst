@@ -1,23 +1,41 @@
-=======
+*******
 CurlyTx
-=======
+*******
 Enigma2 (Dreambox) plugin that lets you view the contents of remote
-plain text files, e.g. HTTP.
+*plain text* files, e.g. HTTP URLs.
 
 Multiple URLs can be configured and navigated.
 
+.. contents::
+   :depth: 2
 
 
-Open issues
-===========
-- move mode to re-order pages
-- how to show clock in lcd?
+========
+Features
+========
+- Load any remote plain text files, e.g. via HTTP
+- Unlimited number of remote URLs/pages
+- Reload pages
+- Show HTTP headers
+- Configurable page titles
+- Configurable default page
+- Import complete page list from Atom feed
+- Visible in the main menu or the extension menu (configurable)
+- Configurable menu title
+- Help screen for main window and settings window
 
 
-License
-=======
-The plugin is subject to the GPLv3 or later.
+=====
+Usage
+=====
 
+FIXME
+
+
+
+=================
+Modifying CurlyTx
+=================
 
 
 Translation
@@ -64,3 +82,15 @@ You will need the ``ipkg-build`` script from
  http://reichholf.net/files/dreambox/tools/ipkg-build
 
 Also see http://dream.reichholf.net/wiki/Howto:IPK_Pakete_erstellen
+
+
+Open issues
+===========
+- move mode to re-order pages
+- how to show clock in lcd?
+
+
+=======
+License
+=======
+The plugin is subject to the GPLv3 or later.
