@@ -9,6 +9,7 @@ from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
+from Screens.MessageBox import MessageBox
 
 from . import config
 from config import createPage, loadDefaultPageOptions
@@ -131,9 +132,13 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
                 self.pageEdited, CurlyTxPageEdit,
                 config.plugins.CurlyTx.pages[id], False
                 )
-        else:
+        elif config.plugins.CurlyTx.feedUrl.value:
             from AtomFeed import AtomFeed
             AtomFeed(config.plugins.CurlyTx.feedUrl.value, self.feedPagesReceived)
+        else:
+            self.session.open(
+                MessageBox, _("No page feed URL defined"), MessageBox.TYPE_ERROR
+                )
 
     def pageEdited(self, page, new):
         if not page:
