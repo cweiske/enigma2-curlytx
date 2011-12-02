@@ -202,7 +202,7 @@ class CurlyTx(Screen,HelpableScreen):
             self["text"].setText(self.pageContent)
             self.pageContent    = None
             self.showingHeaders = False
-        else:
+        elif self.httpGetterFactory.response_headers:
             headers = _("HTTP response headers for") + "\n" + self.currentUrl + "\n\n"
             for (k, v) in self.httpGetterFactory.response_headers.items():
                 headers += k + ": " + ("\n" + k + ": ").join(v) + "\n"
