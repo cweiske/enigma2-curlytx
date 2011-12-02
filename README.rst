@@ -60,7 +60,33 @@ Adding many pages
 =================
 You can use the settings window to add new pages, but this gets tedious if you
 want to add many pages.
+
 It's better to use the Atom feed import in this case.
+All you need is a text editor and a web server you can serve the feed page with.
+
+Here is an example feed::
+
+  <?xml version="1.0" encoding="utf-8"?>
+  <feed xmlns="http://www.w3.org/2005/Atom">
+   <title>URL list for CurlyTx</title>
+   <author>
+    <name>Christian Weiske</name>
+    <email>cweiske@cweiske.de</email>
+   </author>
+   <link rel="self" href="http://cweiske.de/tagebuch/feed/"/>
+   <entry>
+    <id>http://ip.cweiske.de/</id>
+    <title>My IP</title>
+   </entry>
+   <entry>
+    <id>http://home/temperatures.txt</id>
+    <title>House temperatures</title>
+   </entry>
+  </feed>
+
+Start CurlyTx, go to the settings and write the feed URL in the
+"Page feed URL" field.
+Then press "OK" and the feed's pages will be loaded into the settings window.
 
 
 =================
