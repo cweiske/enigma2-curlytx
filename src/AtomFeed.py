@@ -9,16 +9,12 @@ from xml.etree.cElementTree import fromstring
 class AtomFeed:
     """ Simple XML parser that extracts pages from a atom feed """
     ns = "{http://www.w3.org/2005/Atom}"
-    def __init__(self, url, callback):
+    def __init__(self, url, callback, errorCallback):
         """ Fetches the URL
 
         Parsed pages are sent back to callback by parse()
         """
-        getPage(url).addCallback(self.parse, callback).addErrback(self.fail)
-
-
-    def fail(self, msg):
-        print("CurlyTx", msg)
+        getPage(url).addCallback(self.parse, callback).addErrback(errorCallback)
 
     def parse(self, data, callback):
         """ Parse atom feed data into pages list and run callback """

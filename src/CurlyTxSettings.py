@@ -134,7 +134,10 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
                 )
         elif config.plugins.CurlyTx.feedUrl.value:
             from AtomFeed import AtomFeed
-            AtomFeed(config.plugins.CurlyTx.feedUrl.value, self.feedPagesReceived)
+            AtomFeed(
+                config.plugins.CurlyTx.feedUrl.value,
+                self.feedPagesReceived, self.feedPagesFail
+                )
         else:
             self.session.open(
                 MessageBox, _("No page feed URL defined"), MessageBox.TYPE_ERROR
@@ -162,6 +165,14 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
             page.uri.setValue(pageData["url"])
 
         self["config"].setList(self.getConfigList())
+
+    def feedPagesFail(self, failure):
+        """ Downloading the page url feed failed somehow """
+        self.session.open(
+            MessageBox,
+            _("Error loading page feed:") + "\n\n" + str(failure.getErrorMessage()),
+            MessageBox.TYPE_ERROR
+            )
 
     def keySave(self):
         for i in range(0, len(config.plugins.CurlyTx.pages)):
