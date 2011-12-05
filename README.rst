@@ -150,13 +150,23 @@ You will need the ``ipkg-build`` script from
 Also see http://dream.reichholf.net/wiki/Howto:IPK_Pakete_erstellen
 
 
-Open issues
-===========
+Open issues / ideas
+===================
 - move mode to re-order pages
 - how to show clock in lcd?
 
 
-=======
+=====
+About
+=====
+Homepage
+========
+https://open-dreambox.org/trac/dreambox/wiki/CurlyTx
+
+Author
+======
+Christian Weiske, cweiske@cweiske.de
+
 License
 =======
 The plugin is subject to the GPLv3_ or later.
