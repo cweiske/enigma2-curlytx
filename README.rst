@@ -73,14 +73,16 @@ Here is an example feed::
     <name>Christian Weiske</name>
     <email>cweiske@cweiske.de</email>
    </author>
-   <link rel="self" href="http://cweiske.de/tagebuch/feed/"/>
+   <link rel="self" href="http://home.cweiske.de/pagefeed.atom"/>
    <entry>
-    <id>http://ip.cweiske.de/</id>
+    <id>ip</id>
     <title>My IP</title>
+    <link rel="alternate" type="text/html" href="http://ip.cweiske.de/" />
    </entry>
    <entry>
-    <id>http://home/temperatures.txt</id>
+    <id>temp</id>
     <title>House temperatures</title>
+    <link rel="alternate" type="text/html" href="http://home/temperatures.txt" />
    </entry>
   </feed>
 
