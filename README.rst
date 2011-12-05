@@ -16,6 +16,7 @@ Features
 - Load any remote plain text files, e.g. via HTTP
 - Unlimited number of remote URLs/pages
 - Reload pages
+- Non-blocking URL loading
 - Show HTTP headers
 - Configurable page titles
 - Configurable text size
@@ -136,6 +137,13 @@ Then simply run ::
 
     ./build.sh
 
+Directory ``releases/`` will contain the freshly baked ``.ipk`` file that can
+then be transferred to your dreambox, e.g. via ``scp``::
+
+    $ scp releases/enigma2-plugin-extensions-curlytx_2.3_mipsel.ipk dreambox:
+    $ ssh dreambox
+    $ ipkg install enigma2-plugin-extensions-curlytx_2.3_mipsel.ipk
+
 You will need the ``ipkg-build`` script from
  http://reichholf.net/files/dreambox/tools/ipkg-build
 
@@ -151,4 +159,6 @@ Open issues
 =======
 License
 =======
-The plugin is subject to the GPLv3 or later.
+The plugin is subject to the GPLv3_ or later.
+
+.. _GPLv3: http://www.gnu.org/licenses/agpl.html
