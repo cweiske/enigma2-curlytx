@@ -6,5 +6,5 @@ Depends: enigma2, python-twisted-web
 License: GPLv3 or later
 Architecture: mipsel
 OE: enigma2-plugins
-Homepage: http://git.cweiske.de/?p=enigma2-curlytx.git
+Homepage: https://open-dreambox.org/trac/dreambox/wiki/CurlyTx
 Source: git://git.cweiske.de/enigma2-curlytx.git
