@@ -165,7 +165,9 @@ https://open-dreambox.org/trac/dreambox/wiki/CurlyTx
 
 Author
 ======
-Christian Weiske, cweiske@cweiske.de
+Christian Weiske, `cweiske@cweiske.de`__
+
+.. __: mailto:cweiske@cweiske.de
 
 License
 =======
