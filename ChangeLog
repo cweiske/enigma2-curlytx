@@ -1,3 +1,13 @@
+2011-12-06  Christian Weiske  <cweiske@cweiske.de>
+
+	* Fix crash that occured when the box is slow
+	* Fix crash showing headers when no headers available
+	* Fix bug: Saving URLs was broken
+	* Show error message when feed loading fails
+	* Add usage instructions to README
+	* Add docblocks to the code
+	* Error messages can be translated now
+
 2011-11-24  Christian Weiske  <cweiske@cweiske.de>
 
 	* Show headers when pressing info button
