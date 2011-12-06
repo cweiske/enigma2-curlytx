@@ -70,8 +70,11 @@ class CurlyTx(Screen,HelpableScreen):
 
         self.loadHelp()
         self.loadButtons()
+        self.onLayoutFinish.append(self.afterLayout)
+
+    def afterLayout(self):
+        self.setTextFont
         self.loadUrl(config.plugins.CurlyTx.defaultPage.value)
-        self.onLayoutFinish.append(self.setTextFont)
 
     def loadHelp(self):
         self.helpList.append((
