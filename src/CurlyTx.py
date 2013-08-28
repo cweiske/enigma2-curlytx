@@ -19,6 +19,8 @@ from enigma import gFont
 from . import config
 from Components.config import config
 
+import os
+
 class CurlyTx(Screen,HelpableScreen):
     skin = """
         <screen name="CurlyTx" position="center,center" size="560,430" title="CurlyTx" >
@@ -154,6 +156,7 @@ class CurlyTx(Screen,HelpableScreen):
         self.loadUrl(self.currentPage)
 
     def loadUrl(self, pageId):
+        self.httpGetterFactory = None
         if pageId == None:
             self.loadNoPage()
             return
@@ -182,7 +185,19 @@ class CurlyTx(Screen,HelpableScreen):
         self.setTextFont()
         self["text"].setText(_("Loading ...") + "\n" + url);
 
-        self.getPageWebClient(url).addCallback(self.urlLoaded).addErrback(self.urlFailed, url)
+        if (url.startswith('file://')):
+            self.loadLocalFile(url)
+        else:
+            self.getPageWebClient(url).addCallback(self.urlLoaded).addErrback(self.urlFailed, url)
+
+    def loadLocalFile(self, url):
+        file = url[7:]
+        if not os.path.exists(file):
+            self.showFail('File does not exist', file)
+            return
+
+        with open(file, 'r') as f:
+            self.urlLoaded(f.read())
 
     def setTextFont(self):
         if self["text"].long_text is not None:
@@ -192,8 +207,11 @@ class CurlyTx(Screen,HelpableScreen):
         self["text"].setText(html)
 
     def urlFailed(self, error, url):
+        self.showFail(error.getErrorMessage(), url)
+
+    def showFail(self, message, url):
         self["text"].setText(
-            _("Error fetching URL:") + "\n " + error.getErrorMessage()
+            _("Error fetching URL:") + "\n " + message
             + "\n\nURL: " + url
             )
 
@@ -201,6 +219,9 @@ class CurlyTx(Screen,HelpableScreen):
         self["text"].setText(_("Go and add a page in the settings"));
 
     def showHeader(self):
+        if not self.httpGetterFactory:
+            return
+
         if self.showingHeaders:
             self["text"].setText(self.pageContent)
             self.pageContent    = None
