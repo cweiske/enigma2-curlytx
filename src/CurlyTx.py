@@ -106,9 +106,6 @@ class CurlyTx(Screen,HelpableScreen):
         self.helpList.append((
                 self["actions"], "WizardActions",
                 [("back", _("Close window"))]))
-        self.helpList.append((
-                self["actions"], "HelpActions",
-                [("displayHelp", _("Show this help screen"))]))
 
     def loadButtons(self):
         pageCount = len(config.plugins.CurlyTx.pages)
