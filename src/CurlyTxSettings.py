@@ -12,7 +12,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 
 from . import config
-from config import createPage, loadDefaultPageOptions
+from config import createPage, loadDefaultPageOptions, feedPagesToConfig, savePageConfig
 from Components.config import config, getConfigListEntry, ConfigSelection
 from Components.ConfigList import ConfigList, ConfigListScreen
 
@@ -153,32 +153,19 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
         self["config"].setList(self.getConfigList())
 
     def feedPagesReceived(self, pages):
-        if len(pages) == 0:
-            return
-
-        del config.plugins.CurlyTx.pages[:]
-
-        for pageData in pages:
-            page = createPage()
-            config.plugins.CurlyTx.pages.append(page)
-            page.title.setValue(pageData["title"])
-            page.uri.setValue(pageData["url"])
-
+        feedPagesToConfig(pages)
         self["config"].setList(self.getConfigList())
 
-    def feedPagesFail(self, failure):
+    def feedPagesFail(self, errorMessage):
         """ Downloading the page url feed failed somehow """
         self.session.open(
             MessageBox,
-            _("Error loading page feed:") + "\n\n" + str(failure.getErrorMessage()),
+            _("Error loading page feed:") + "\n\n" + str(errorMessage),
             MessageBox.TYPE_ERROR
             )
 
     def keySave(self):
-        for i in range(0, len(config.plugins.CurlyTx.pages)):
-            config.plugins.CurlyTx.pages[i].save()
-
-        config.plugins.CurlyTx.pages.save()
+        savePageConfig()
         ConfigListScreen.keySave(self)
 
     def cancelConfirm(self, result):

@@ -7,21 +7,22 @@ from . import _
 
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
-from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
+from Tools import Directories
 from twisted.web import client
 from twisted.web.client import _makeGetterFactory, HTTPClientFactory
 from enigma import gFont
 
 from . import config
+from config import createPage, loadDefaultPageOptions, feedPagesToConfig, savePageConfig
 from Components.config import config
 
 import os
 
-class CurlyTx(Screen,HelpableScreen):
+class CurlyTx(Screen, HelpableScreen):
     skin = """
         <screen name="CurlyTx" position="center,center" size="560,430" title="CurlyTx" >
 	  <ePixmap position="0,0" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
@@ -40,6 +41,7 @@ class CurlyTx(Screen,HelpableScreen):
     currentFontSize = 20
     httpGetterFactory = None
     showingHeaders = False
+    staticPageFeedFile = 'curlytx-pagefeed.xml'
 
     def __init__(self, session, args = None):
         #self.skin = CurlyTx.skin
@@ -72,10 +74,11 @@ class CurlyTx(Screen,HelpableScreen):
 
         self.loadHelp()
         self.loadButtons()
-        self.onLayoutFinish.append(self.afterLayout)
+        self.onFirstExecBegin.append(self.afterLayout)
 
     def afterLayout(self):
         self.setTextFont
+        self.loadStaticConfig()
         self.loadUrl(config.plugins.CurlyTx.defaultPage.value)
 
     def loadHelp(self):
@@ -262,3 +265,31 @@ class CurlyTx(Screen,HelpableScreen):
             contextFactory=contextFactory,
             *args, **kwargs)
         return self.httpGetterFactory.deferred
+
+    def loadStaticConfig(self):
+        """
+        Always try to load the static config file from
+        /etc/enigma2/curlytx-pagefeed.xml
+        """
+        staticFeedPath = Directories.resolveFilename(Directories.SCOPE_CONFIG, self.staticPageFeedFile)
+        if not os.path.exists(staticFeedPath):
+            return
+
+        from AtomFeed import AtomFeed
+        AtomFeed(
+            'file://' + staticFeedPath,
+            self.saveStaticConfig, self.loadStaticConfigFail
+            )
+
+    def loadStaticConfigFail(self, errorMessage):
+        """ Loading the page url feed failed somehow """
+        from Screens.MessageBox import MessageBox
+        self.session.open(
+            MessageBox,
+            _("Error loading page feed:") + "\n\n" + str(errorMessage),
+            type = MessageBox.TYPE_ERROR
+            )
+
+    def saveStaticConfig(self, pages):
+        feedPagesToConfig(pages)
+        savePageConfig()

@@ -25,6 +25,26 @@ def loadDefaultPageOptions():
     else:
         config.plugins.CurlyTx.defaultPage = ConfigSelection(defaults, "0")
 
+def feedPagesToConfig(pages):
+    """ save pages from atom feed into config. """
+    if len(pages) == 0:
+        return
+
+    del config.plugins.CurlyTx.pages[:]
+
+    for pageData in pages:
+        page = createPage()
+        config.plugins.CurlyTx.pages.append(page)
+        page.title.setValue(pageData["title"])
+        page.uri.setValue(pageData["url"])
+
+def savePageConfig():
+    for i in range(0, len(config.plugins.CurlyTx.pages)):
+        config.plugins.CurlyTx.pages[i].save()
+
+    config.plugins.CurlyTx.pages.save()
+
+
 #configuration setup
 config.plugins.CurlyTx = ConfigSubsection()
 config.plugins.CurlyTx.menuMain = ConfigYesNo(default = True)

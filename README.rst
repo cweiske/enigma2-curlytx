@@ -56,6 +56,9 @@ up/down buttons and press "OK" - the page edit window will open.
 Press the green button and the settings will be saved.
 You're back on the main window now and the URL you just configured will be loaded.
 
+Note that with version 1.1, CurlyTx supports opening local files.
+Prepend them with ``file://``, e.g. ``file:///tmp/test.txt``.
+
 
 Adding many pages
 =================
@@ -90,6 +93,14 @@ Here is an example feed::
 Start CurlyTx, go to the settings and write the feed URL in the
 "Page feed URL" field.
 Then press "OK" and the feed's pages will be loaded into the settings window.
+
+
+Local configuration file
+========================
+CurlyTx looks for a local page feed file on the harddisk on every run,
+at ``/etc/enigma2/curlytx-pagefeed.xml``.
+If this file exists, it gets loaded unconditionally and overwrites
+the current page configuration.
 
 
 =================
