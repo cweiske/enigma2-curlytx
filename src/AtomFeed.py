@@ -11,6 +11,7 @@ import os
 class AtomFeed:
     """ Simple XML parser that extracts pages from a atom feed """
     ns = "{http://www.w3.org/2005/Atom}"
+    nsc = "{http://ns.cweiske.de/curlytx}"
     errorCallback = None
 
     def __init__(self, url, callback, errorCallback):
@@ -44,7 +45,12 @@ class AtomFeed:
             if titleE != None and titleE.text != "" and url != None:
                 pages.append({"title": titleE.text, "url": url})
 
-        callback(pages)
+        settings = dict()
+        for entry in list(xml):
+            if (entry.tag.startswith(self.nsc)):
+                settings[entry.tag[len(self.nsc):]] = entry.text
+
+        callback(pages, settings)
 
     def bestLink(self, list):
         """ Fetch the best matching link from an atom feed entry """

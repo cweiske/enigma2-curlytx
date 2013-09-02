@@ -12,7 +12,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 
 from . import config
-from config import createPage, loadDefaultPageOptions, feedPagesToConfig, savePageConfig
+from config import createPage, loadDefaultPageOptions, feedPagesToConfig, feedSettingsToConfig, savePageConfig
 from Components.config import config, getConfigListEntry, ConfigSelection
 from Components.ConfigList import ConfigList, ConfigListScreen
 
@@ -152,8 +152,9 @@ class CurlyTxSettings(ConfigListScreen, HelpableScreen, Screen):
 
         self["config"].setList(self.getConfigList())
 
-    def feedPagesReceived(self, pages):
+    def feedPagesReceived(self, pages, settings):
         feedPagesToConfig(pages)
+        feedSettingsToConfig(settings)
         self["config"].setList(self.getConfigList())
 
     def feedPagesFail(self, errorMessage):

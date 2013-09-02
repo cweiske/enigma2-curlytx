@@ -103,6 +103,43 @@ If this file exists, it gets loaded unconditionally and overwrites
 the current page configuration.
 
 
+Disable settings
+================
+The page feed file may contain a tag that disables the settings button.
+By using it, you can prevent people from modifying the CurlyTx settings.
+
+First, register the namespace::
+
+    <feed xmlns="http://www.w3.org/2005/Atom" xmlns:c="http://ns.cweiske.de/curlytx">
+
+Then, add the setting after the author or self link::
+
+    <c:enableSettings>0</c:enableSettings>
+
+Here is the example feed with disabled settings::
+
+  <?xml version="1.0" encoding="utf-8"?>
+  <feed xmlns="http://www.w3.org/2005/Atom" xmlns:c="http://ns.cweiske.de/curlytx">
+   <title>URL list for CurlyTx</title>
+   <author>
+    <name>Christian Weiske</name>
+    <email>cweiske@cweiske.de</email>
+   </author>
+   <link rel="self" href="http://home.cweiske.de/pagefeed.atom"/>
+   <c:enableSettings>0</c:enableSettings>
+   <entry>
+    <id>ip</id>
+    <title>My IP</title>
+    <link rel="alternate" type="text/html" href="http://ip.cweiske.de/" />
+   </entry>
+   <entry>
+    <id>temp</id>
+    <title>House temperatures</title>
+    <link rel="alternate" type="text/html" href="http://home/temperatures.txt" />
+   </entry>
+  </feed>
+
+
 =================
 Modifying CurlyTx
 =================

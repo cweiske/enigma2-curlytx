@@ -17,7 +17,7 @@ from twisted.web.client import _makeGetterFactory, HTTPClientFactory
 from enigma import gFont
 
 from . import config
-from config import createPage, loadDefaultPageOptions, feedPagesToConfig, savePageConfig
+from config import createPage, loadDefaultPageOptions, feedPagesToConfig, feedSettingsToConfig, savePageConfig
 from Components.config import config
 
 import os
@@ -124,6 +124,11 @@ class CurlyTx(Screen, HelpableScreen):
             self["key_green"].setText(_("Reload"))
             self["key_yellow"].setText(_("Prev"))
             self["key_blue"].setText(_("Next"))
+
+        if config.plugins.CurlyTx.enableSettings.getValue():
+            self["key_red"].setText(_("Settings"))
+        else:
+            self["key_red"].setText("")
 
     def pageUp(self):
         self["text"].pageUp()
@@ -235,6 +240,9 @@ class CurlyTx(Screen, HelpableScreen):
             self.showingHeaders = True
 
     def showSettings(self):
+        if not config.plugins.CurlyTx.enableSettings.getValue():
+            return
+
         from CurlyTxSettings import CurlyTxSettings
         self.session.openWithCallback(self.onSettingsChanged, CurlyTxSettings)
 
@@ -290,6 +298,8 @@ class CurlyTx(Screen, HelpableScreen):
             type = MessageBox.TYPE_ERROR
             )
 
-    def saveStaticConfig(self, pages):
+    def saveStaticConfig(self, pages, settings):
         feedPagesToConfig(pages)
+        feedSettingsToConfig(settings)
         savePageConfig()
+        self.loadButtons()

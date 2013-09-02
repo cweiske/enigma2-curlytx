@@ -3,7 +3,7 @@
 # Copyright (C) 2011 Christian Weiske <cweiske@cweiske.de>
 # License: GPLv3 or later
 
-from Components.config import config, ConfigYesNo, ConfigSelection, ConfigNumber, ConfigText, ConfigSubsection, ConfigSubList, ConfigInteger
+from Components.config import config, ConfigEnableDisable, ConfigYesNo, ConfigSelection, ConfigNumber, ConfigText, ConfigSubsection, ConfigSubList, ConfigInteger
 
 def createPage():
     """ Create and return a configuration page object """
@@ -38,6 +38,15 @@ def feedPagesToConfig(pages):
         page.title.setValue(pageData["title"])
         page.uri.setValue(pageData["url"])
 
+def feedSettingsToConfig(settings):
+    changed = False
+    if 'enableSettings' in settings and config.plugins.CurlyTx.enableSettings.getValue() != settings['enableSettings']:
+        config.plugins.CurlyTx.enableSettings.setValue(int(settings['enableSettings']))
+        changed = True
+
+    if changed:
+        config.plugins.CurlyTx.save()
+
 def savePageConfig():
     for i in range(0, len(config.plugins.CurlyTx.pages)):
         config.plugins.CurlyTx.pages[i].save()
@@ -49,6 +58,7 @@ def savePageConfig():
 config.plugins.CurlyTx = ConfigSubsection()
 config.plugins.CurlyTx.menuMain = ConfigYesNo(default = True)
 config.plugins.CurlyTx.menuExtensions = ConfigYesNo(default = False)
+config.plugins.CurlyTx.enableSettings = ConfigEnableDisable(default = True)
 config.plugins.CurlyTx.menuTitle = ConfigText(default = "CurlyTx", fixed_size = False)
 config.plugins.CurlyTx.feedUrl = ConfigText(default = "", fixed_size = False)
 config.plugins.CurlyTx.pages = ConfigSubList()
