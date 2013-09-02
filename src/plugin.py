@@ -28,10 +28,10 @@ def menuHook(menuid):
 def Plugins(**kwargs):
     """ Register CurlyTx in the extension list and main menu """
     list = [
-#        PluginDescriptor(name = config.plugins.CurlyTx.menuTitle.value,
-#                         description = "View remote text files",
-#                         where = [PluginDescriptor.WHERE_PLUGINMENU],
-#                         fnc = main),
+        PluginDescriptor(name = config.plugins.CurlyTx.menuTitle.value,
+                         description = "View remote text files",
+                         where = [PluginDescriptor.WHERE_PLUGINMENU],
+                         fnc = main),
         PluginDescriptor(name = config.plugins.CurlyTx.menuTitle.value,
                          description = _("View remote text files"),
                          where=PluginDescriptor.WHERE_MENU,
