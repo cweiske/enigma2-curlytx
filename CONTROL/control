@@ -1,5 +1,5 @@
 Package: enigma2-plugin-extensions-curlytx
-Version: 1.0
+Version: 1.1
 Description: Fetch and display remote text files via HTTP
 Maintainer: Christian Weiske <cweiske@cweiske.de>
 Depends: enigma2, python-twisted-web
