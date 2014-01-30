@@ -2,6 +2,7 @@
 
 	* Support older dreamboxes (e.g. 7025+) that don't have a
 	  recent elementtree library.
+	* Version 1.1.1
 
 2013-09-02  Christian Weiske  <cweiske@cweiske.de>
 
