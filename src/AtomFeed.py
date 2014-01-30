@@ -4,7 +4,7 @@
 # License: GPLv3 or later
 
 from twisted.web.client import getPage
-from xml.etree.cElementTree import fromstring, ParseError
+from xml.etree.cElementTree import fromstring
 
 import os
 
@@ -35,7 +35,7 @@ class AtomFeed:
         """ Parse atom feed data into pages list and run callback """
         try:
             xml = fromstring(data)
-        except ParseError:
+        except Exception:
             return self.errorCallback("Invalid XML")
 
         pages = []
